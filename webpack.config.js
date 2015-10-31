@@ -2,7 +2,8 @@ var Webpack = require('webpack');
 var path = require('path');
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var buildPath = path.resolve(__dirname, 'src', 'public', 'build');
-var mainPath = path.resolve(__dirname, 'src', 'app', 'main.js');
+var mainDir = path.resolve(__dirname, 'src', 'app');
+var mainPath = path.resolve(mainDir, 'main.js');
 var config = {
 
   // Makes sure errors in console map to the correct file
@@ -59,6 +60,16 @@ var config = {
       }
 
     ]
+  },
+  resolve: {
+    root: path.resolve(__dirname),
+    alias: {
+      pages: path.resolve(mainDir, 'pages'),
+      containers: path.resolve(mainDir, 'containers'),
+      persistence: path.resolve(mainDir, 'persistance'),
+      utils: path.resolve(mainDir, 'utils')
+    },
+    extensions: ['', '.js', '.jsx']
   },
 
   // We have to manually add the Hot Replacement plugin when running

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+//import x from 'containers/layouts/layout.js'
+//console.log('x', x)
 //import { authTwitter } from '../../containers/user/user.actions.js'
 
 class Login extends Component {
