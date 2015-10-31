@@ -1,28 +1,24 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-//import x from 'containers/layouts/layout.js'
-//console.log('x', x)
-//import { authTwitter } from '../../containers/user/user.actions.js'
+import { authWithTwitter } from 'business/user/user.group.actions.js'
 
 class Login extends Component {
 
-  authTwitter() {
-    const { dispatch } = this.props
-    //dispatch(authTwitter())
-    //href="/auth/twitter"
-  }
-
   render() {
     // Todo: create proper button
+    const { dispatch } = this.props
+
     return (
       <div style={positionAbsolute}>
         <img src="/images/aurity_logo_v32_big.png" style={logo}/>
         <h1 style={{textAlign: 'center'}}>Login required</h1>
         <h4 style={{textAlign: 'center'}}>To search on twitter you need to sign in</h4>
 
-        <div className="btn-group row" style={{width:'100%', cursor: 'pointer'}} onClick={::this.authTwitter}>
+        <div className="btn-group row"
+             style={ { width: '100%', cursor: 'pointer'} }
+             onClick={ () => { dispatch(authWithTwitter()) } }>
           <a className='btn btn-info disabled col-md-1' style={{ height: 37}}><i className="fa fa-twitter" style={{ width:16, height:20}}></i></a>
-          <a className='btn btn-info col-md-11' href="/auth/twitter" style={{ height: 37, fontSize: 16}}> Sign in with Twitter</a>
+          <a className='btn btn-info col-md-11' style={{ height: 37, fontSize: 16}}> Sign in with Twitter</a>
         </div>
       </div>
     )

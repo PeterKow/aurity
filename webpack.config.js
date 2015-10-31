@@ -66,6 +66,7 @@ var config = {
     alias: {
       pages: path.resolve(mainDir, 'pages'),
       containers: path.resolve(mainDir, 'containers'),
+      business: path.resolve(mainDir, 'business'),
       persistence: path.resolve(mainDir, 'persistance'),
       utils: path.resolve(mainDir, 'utils')
     },
