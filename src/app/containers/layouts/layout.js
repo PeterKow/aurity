@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
-export default class Layout extends Component{
-  render(){
+export default class Layout extends Component {
+  render() {
     return <div id="main" >Hello Twitter</div>
   }
 }

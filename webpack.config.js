@@ -3,7 +3,6 @@ var path = require('path');
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var buildPath = path.resolve(__dirname, 'src', 'public', 'build');
 var mainPath = path.resolve(__dirname, 'src', 'app', 'main.js');
-console.log('----', nodeModulesPath, mainPath);
 var config = {
 
   // Makes sure errors in console map to the correct file
@@ -34,7 +33,6 @@ var config = {
     publicPath: '/build/'
   },
   module: {
-
     loaders: [
 
       // I highly recommend using the babel-loader as it gives you
