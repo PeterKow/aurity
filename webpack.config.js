@@ -82,7 +82,11 @@ var config = {
         'NODE_ENV': JSON.stringify('development'),
         'DEVTOOLS': process.env.DEVTOOLS === 'true' ? true : false
       },
-    })]
+    })],
+  // enable html5 push state
+  devServer: {
+    historyApiFallback: true
+  }
 };
 
 module.exports = config;

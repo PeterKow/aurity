@@ -24,7 +24,7 @@ function renderRoutes (history) {
     queryKey: false
   });
   return (
-    <Router history={history}>
+    <Router history={historyNew}>
       <Route component={ Layout }>
         <Route path="/" component={ MainPage } />
       </Route>

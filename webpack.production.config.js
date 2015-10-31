@@ -1,6 +1,8 @@
 var Webpack = require('webpack');
 var path = require('path');
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
+var mainDir = path.resolve(__dirname, 'src', 'app');
+var mainPath = path.resolve(mainDir, 'main.js');
 
 var config = {
   entry: path.resolve(__dirname, 'src/app/main.js'),
@@ -44,11 +46,17 @@ var config = {
         'DEVTOOLS': process.env.DEVTOOLS === 'true' ? true : false
       },
     })],
-  historyApiFallback: true,
-  devServer: {
-    historyApiFallback: true
-  }
-
+  resolve: {
+    root: path.resolve(__dirname),
+    alias: {
+      pages: path.resolve(mainDir, 'pages'),
+      containers: path.resolve(mainDir, 'containers'),
+      business: path.resolve(mainDir, 'business'),
+      persistence: path.resolve(mainDir, 'persistance'),
+      utils: path.resolve(mainDir, 'utils')
+    },
+    extensions: ['', '.js', '.jsx']
+  },
 };
 
 module.exports = config;
