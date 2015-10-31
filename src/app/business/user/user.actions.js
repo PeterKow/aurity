@@ -10,8 +10,8 @@ export function twitterLogin(data) {
   return { type: TWITTER_LOGIN, data }
 }
 
-export function twitterFailed(){
-  return { type: TWITTER_FAILED }
+export function twitterFailed(data){
+  return { type: TWITTER_FAILED, data }
 }
 
 export function twitterLogout() {

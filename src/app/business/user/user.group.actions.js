@@ -1,4 +1,4 @@
-import { authTwitter } from './user.actions.js'
+import { authTwitter, twitterFailed, twitterLogin } from './user.actions.js'
 import Firebase from 'firebase'
 
 export function authWithTwitter() {
@@ -7,9 +7,18 @@ export function authWithTwitter() {
     const ref = new Firebase('https://aurity.firebaseio.com');
     ref.authWithOAuthPopup('twitter', function(error, authData) {
       if (error) {
-        console.log('error', error)
+       dispatch(twitterFailed(error))
       } else {
-        console.log('data', authData)
+        const {
+          token: tokenFirebase,
+          twitter: {
+            accessToken: tokenTwitter,
+            displayName: name,
+            id,
+            profileImageURL
+            }
+          } = authData;
+        dispatch(twitterLogin({ tokenFirebase, tokenTwitter, name, id, profileImageURL }))
       }
     })
   }
