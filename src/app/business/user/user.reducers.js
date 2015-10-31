@@ -18,8 +18,8 @@ function userReducer(state = initialState, action = { type : undefined }) {
     case TWITTER_FAILED:
       return state.set('fetchingAuth', false)
     case TWITTER_LOGIN:
-      storage.setItem('token', action.data.twitter.token)
-      return state.merge(state, { tokens: { twitter: action.data.twitter.token }, fetchingAuth: false})
+      storage.setItem('token', action.data.tokenTwitter)
+      return state.merge(state, { tokens: { twitter: action.data.tokenTwitter }, fetchingAuth: false})
     case TWITTER_LOGOUT:
       return state.merge(state, { tokens: { twitter: {} }})
     default:
