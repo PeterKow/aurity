@@ -1,5 +1,6 @@
+var Webpack = require('webpack');
 var path = require('path');
-var node_modules_dir = path.resolve(__dirname, 'node_modules');
+var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 
 var config = {
   entry: path.resolve(__dirname, 'src/app/main.js'),
@@ -8,15 +9,41 @@ var config = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
+    loaders: [
 
-      // There is not need to run the loader through
-      // vendors
-      exclude: [node_modules_dir],
-      loader: 'babel'
-    }]
-  }
+      // I highly recommend using the babel-loader as it gives you
+      // ES6/7 syntax and JSX transpiling out of the box
+      {
+        test: /\.js$/,
+        loaders: ['react-hot', 'babel'],
+        exclude: [nodeModulesPath]
+      },
+      {
+        test: /\.jsx$/,
+        loaders: ['react-hot', 'babel'],
+        exclude: [nodeModulesPath]
+      },
+      // Let us also add the style-loader and css-loader, which you can
+      // expand with less-loader etc.
+      {
+        test: /\.css$/,
+        loader: 'style!css'
+      },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"
+      }
+
+    ]
+  },
+  plugins: [
+    new Webpack.NoErrorsPlugin(),
+    new Webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('development'),
+        'DEVTOOLS': process.env.DEVTOOLS === 'true' ? true : false
+      },
+    })]
 };
 
 module.exports = config;
