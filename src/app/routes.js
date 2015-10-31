@@ -7,7 +7,7 @@ import MainPage from './pages/main/mainPage.js'
 //import MainPage from './pages/mainPage/mainPage.js'
 //import NotFoundRouteView from './pages/utils/notFoundRoute.js'
 //import SearchArticles from './pages/mainSearchPage/searchArticles.js'
-//import Login from './pages/loginPage/loginPage.js'
+import Login from './pages/login/loginPage.js'
 //import ProfilePage from './pages/profilePage/profilePage.js'
 // Browser history
 // TODO; decide history url style
@@ -24,10 +24,11 @@ function renderRoutes (history) {
     queryKey: false
   });
   return (
-    <Router history={historyNew}>
+    <Router history={history}>
       <Route component={ Layout }>
         <Route path="/" component={ MainPage } />
       </Route>
+      <Route path="login" component={ Login } />
 
     </Router>
   )

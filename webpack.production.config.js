@@ -43,7 +43,12 @@ var config = {
         'NODE_ENV': JSON.stringify('development'),
         'DEVTOOLS': process.env.DEVTOOLS === 'true' ? true : false
       },
-    })]
+    })],
+  historyApiFallback: true,
+  devServer: {
+    historyApiFallback: true
+  }
+
 };
 
 module.exports = config;
