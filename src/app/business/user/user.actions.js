@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch'
 import * as storage from '../../persistance/storage.js'
 
 export function authTwitter() {
-    return { type: AUTH_TWITTER }
+  return { type: AUTH_TWITTER }
 }
 
 export function twitterLogin(data) {
@@ -25,7 +25,7 @@ export function kosz() {
     dispatch({ type: AUTH_TWITTER })
 
     // TODO change url generic solution
-    return fetch('http://127.0.0.1:8000/profile',{
+    return fetch('http://127.0.0.1:8000/profile', {
       credentials: 'same-origin'
     })
       .then(checkStatusCode)
