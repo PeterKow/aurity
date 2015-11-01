@@ -7,8 +7,8 @@ var mainPath = path.resolve(mainDir, 'main.js');
 var config = {
   entry: path.resolve(__dirname, 'src/app/main.js'),
   output: {
-    path: path.resolve(__dirname, 'public/build'),
-    filename: 'bundle.js'
+    path: path.resolve(__dirname, 'public'),
+    filename: '/build/bundle.js'
   },
   module: {
     loaders: [
@@ -31,9 +31,9 @@ var config = {
         test: /\.css$/,
         loader: 'style!css'
       },
-      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff&name=/build/[hash].[ext]" },
       {
-        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader?name=/build/[hash].[ext]"
       }
 
     ]
