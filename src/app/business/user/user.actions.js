@@ -15,7 +15,6 @@ export function twitterFailed(data){
 }
 
 export function twitterLogout() {
-  //storage.remove('token')
   return { type: TWITTER_LOGOUT }
 }
 
