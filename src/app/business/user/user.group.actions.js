@@ -18,8 +18,23 @@ export function authWithTwitter() {
             profileImageURL
             }
           } = authData;
-        dispatch(twitterLogin({ tokenFirebase, tokenTwitter, name, id, profileImageURL }))
+        dispatch(twitterSuccess({ tokenFirebase, tokenTwitter, name, id, profileImageURL }))
       }
     })
   }
+}
+
+
+function twitterSuccess({ tokenFirebase, tokenTwitter, name, id, profileImageURL }) {
+  return dispatch => {
+    dispatch(twitterLogin({ tokenFirebase, tokenTwitter, name, id, profileImageURL }))
+    dispatch(addUser({ tokenFirebase, tokenTwitter, name, id, profileImageURL }))
+  }
+}
+
+function addUser({ tokenFirebase, tokenTwitter, name, id, profileImageURL }) {
+  var userRef = new Firebase("https://aurity.firebaseio.com/user");
+  userRef.push({ tokenFirebase, tokenTwitter, name, id, profileImageURL })
+  return { type: 'ADD_USER'}
+
 }
