@@ -18,7 +18,7 @@ import createHashHistory from 'history/lib/createHashHistory';
 import auth from 'business/firebase/firebaseAuth.js'
 
 function requireAuth(nextState, replaceState) {
-  console.log(' auth.checkAuth()',  auth.isLoggedIn())
+  console.log(' auth.checkAuth() -- ',  auth.isLoggedIn())
   if (!auth.isLoggedIn())
     replaceState({ nextPathname: nextState.location.pathname }, '/login')
 }
