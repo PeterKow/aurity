@@ -14,8 +14,12 @@ import Login from './pages/login/loginPage.js'
 import createHistory from 'history/lib/createBrowserHistory';
 import createHashHistory from 'history/lib/createHashHistory';
 
+
+import auth from 'business/firebase/firebaseAuth.js'
+
 function requireAuth(nextState, replaceState) {
-  if (!localStorage.token)
+  console.log(' auth.checkAuth()',  auth.isLoggedIn())
+  if (!auth.isLoggedIn())
     replaceState({ nextPathname: nextState.location.pathname }, '/login')
 }
 
@@ -26,7 +30,7 @@ function renderRoutes (history) {
   return (
     <Router history={historyNew}>
       <Route component={ Layout }>
-        <Route path="/" component={ MainPage } />
+        <Route path="/" component={ MainPage } onEnter={requireAuth} />
       </Route>
       <Route path="login" component={ Login } />
 

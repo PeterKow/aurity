@@ -8,14 +8,13 @@ import { createStore, combineReducers, compose} from 'redux';
 import { Provider, connect } from 'react-redux';
 import createHashHistory from 'history/lib/createBrowserHistory';
 import createBrowserHistory from 'history/lib/createHashHistory';
-import configureStore from './utils/configure-store.js';
 //import HeaderMenu from './containers/headerMenu/containers/headerMenu.container.jsx';
 import * as storage from './persistance/storage.js'
 //import { IntlProvider } from 'react-intl'
 import DevTools from './utils/devTools.js'
 
 
-const store = configureStore()
+import store from 'utils/store.js'
 
 const history = process.env.NODE_ENV === 'production' ?
   createHashHistory() :

@@ -9,32 +9,33 @@ export function authWithTwitter() {
       if (error) {
        dispatch(twitterFailed(error))
       } else {
-        const {
-          token: tokenFirebase,
-          twitter: {
-            accessToken: tokenTwitter,
-            displayName: name,
-            id,
-            profileImageURL
-            }
-          } = authData;
-        dispatch(twitterSuccess({ tokenFirebase, tokenTwitter, name, id, profileImageURL }))
+        dispatch(twitterSuccess(authData))
       }
     })
   }
 }
 
 
-function twitterSuccess({ tokenFirebase, tokenTwitter, name, id, profileImageURL }) {
+export function twitterSuccess(authData) {
   return dispatch => {
+    const {
+      token: tokenFirebase,
+      twitter: {
+        accessToken: tokenTwitter,
+        displayName: name,
+        id,
+        profileImageURL
+        }
+      } = authData;
+
     dispatch(twitterLogin({ tokenFirebase, tokenTwitter, name, id, profileImageURL }))
-    dispatch(addUser({ tokenFirebase, tokenTwitter, name, id, profileImageURL }))
+    //dispatch(addUser({ tokenFirebase, tokenTwitter, name, id, profileImageURL }))
   }
 }
 
 function addUser({ tokenFirebase, tokenTwitter, name, id, profileImageURL }) {
   var userRef = new Firebase("https://aurity.firebaseio.com/user");
-  userRef.push({ tokenFirebase, tokenTwitter, name, id, profileImageURL })
+  userRef.update( { name, id, profileImageURL, tokenFirebase, tokenTwitter  } )
   return { type: 'ADD_USER'}
 
 }
