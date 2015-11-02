@@ -34,7 +34,6 @@ export function kosz() {
           storage.put('token', data.twitter.token)
           dispatch(twitterLogin(data))
           // TODO create more dumb components and move dispatcher to parent -> actionName=dispatch(actionName()) and then child will just call this! :)
-          // window.history.pushState(null, null, '/')
         } else {
           handleError()
         }

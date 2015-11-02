@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
+import store from 'utils/store.js'
+import { logout } from 'business/user/user.group.actions.js'
 
 export default class Navbar extends Component {
   render() {
@@ -19,6 +21,7 @@ export default class Navbar extends Component {
             <li className="active"><a href="/">Home</a></li>
             <li><a href="/search">Search</a></li>
             <li><Link to="/login">Link</Link></li>
+            <li onClick={()=> store.dispatch(logout())}><a href="">Logout</a></li>
             <li className="dropdown">
               <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
               <ul className="dropdown-menu">
