@@ -1,9 +1,63 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class Layout extends Component {
+import Filter from 'containers/articles/components/filter.js';
+import Articles from 'containers/articles/containers/articles.container.js'
+import { setVisibilityFilter, VisibilityFilters, }
+  from 'containers/articles/article.actions.js'
+
+export default class MainPage extends Component {
+
   render() {
-    return (<div>
-              Main Page!!
-            </div>)
+    const { dispatch, miniArticles, visibilityFilter } = this.props
+    const data = miniArticles.length ? miniArticles : []
+    const isFetching = !!miniArticles.isFetching
+
+    return (
+      <div>
+        <Articles isFetching={isFetching} miniArticles={data}/>
+        <Filter
+          filter={visibilityFilter}
+          onFilterChange={nextFilter =>
+            dispatch(setVisibilityFilter(nextFilter))
+          }/>
+      </div>
+    );
   }
 }
+
+MainPage.propTypes = {
+  dispatch: React.PropTypes.func,
+  miniArticles: React.PropTypes.array.isRequired,
+  visibilityFilter: React.PropTypes.oneOf([
+    'SHOW_ALL',
+    'SHOW_COMPLETED',
+    'SHOW_ACTIVE',
+  ]).isRequired,
+}
+
+function selectMiniArticles(miniArticles, filter) {
+  switch (filter) {
+    case VisibilityFilters.SHOW_ALL:
+      return miniArticles
+    case VisibilityFilters.SHOW_COMPLETED:
+      return miniArticles.filter(miniarticle => miniarticle.completed);
+    case VisibilityFilters.SHOW_ACTIVE:
+      return miniArticles.filter(miniarticle => !miniarticle.completed);
+    default:
+      return miniArticles
+  }
+}
+
+// Which props do we want to inject, given the global state?
+// Note: use https://github.com/faassen/reselect for better performance.
+function select(state) {
+  return {
+    miniArticles: selectMiniArticles(state.miniarticles, state.visibilityFilter),
+    visibilityFilter: state.visibilityFilter,
+    searchArticles: state.searchArticles,
+  };
+}
+
+// Wrap the component to inject dispatch and state into it
+export default connect(select)(MainPage)
