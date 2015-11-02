@@ -1,21 +1,15 @@
-require('./main.css');
-require('font-awesome-webpack');
+require('./main.css')
+require('font-awesome-webpack')
 
-import React, { PropTypes } from 'react';
-import ReactDOM from 'react-dom';
-import { Provider, connect } from 'react-redux';
-import createHashHistory from 'history/lib/createBrowserHistory';
-import createBrowserHistory from 'history/lib/createHashHistory';
+import React, { PropTypes } from 'react'
+import ReactDOM from 'react-dom'
+import { Provider, connect } from 'react-redux'
 // import HeaderMenu from './containers/headerMenu/containers/headerMenu.container.jsx';
 // import { IntlProvider } from 'react-intl'
 import DevTools from './utils/devTools.js'
-import renderRoutes from './routes.js';
-
+import renderRoutes from './routes.js'
+import history from 'utils/history.js'
 import store from 'utils/store.js'
-
-const history = process.env.NODE_ENV === 'production' ?
-  createHashHistory() :
-  createBrowserHistory();
 
 function getRootChildren(props) {
   // const intlData = {

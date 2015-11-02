@@ -1,6 +1,7 @@
 import { authTwitter, twitterFailed, twitterLogin } from './user.actions.js'
 import firebaseUser from 'business/firebase/firebaseUser.js'
 import Firebase from 'firebase'
+import history from 'utils/history.js'
 
 export function authWithTwitter() {
   return dispatch => {
@@ -32,7 +33,7 @@ export function twitterSuccess(authData) {
 
     dispatch(twitterLogin({ tokenFirebase, tokenTwitter, name, id, profileImageURL }))
     firebaseUser.update({ uid, tokenFirebase, tokenTwitter, name, id, profileImageURL })
-    window.history.pushState(null, null, '/')
+    history.replaceState(null, '/')
   }
 }
 

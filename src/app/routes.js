@@ -12,7 +12,6 @@ import Login from './pages/login/loginPage.js'
 // import ProfilePage from './pages/profilePage/profilePage.js'
 // Browser history
 // TODO; decide history url style
-import createHistory from 'history/lib/createBrowserHistory';
 // import createHashHistory from 'history/lib/createHashHistory';
 
 
@@ -24,12 +23,9 @@ function requireAuth(nextState, replaceState) {
   }
 }
 
-function renderRoutes() {
-  const historyNew = createHistory({
-    queryKey: false,
-  });
+function renderRoutes(history) {
   return (
-    <Router history={historyNew}>
+    <Router history={history}>
       <Route component={ Layout }>
         <Route path="/" component={ MainPage } onEnter={requireAuth} />
       </Route>
