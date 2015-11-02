@@ -27,7 +27,7 @@ function renderRoutes(history) {
   return (
     <Router history={history}>
       <Route component={ Layout }>
-        <Route path="/" component={ MainPage } onEnter={requireAuth} />
+        <Route path="/" component={ MainPage} onEnter={requireAuth} />
       </Route>
       <Route path="login" component={ Login } />
 
