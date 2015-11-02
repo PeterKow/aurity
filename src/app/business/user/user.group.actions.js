@@ -31,7 +31,7 @@ export function twitterSuccess(authData) {
         },
       } = authData;
 
-    dispatch(twitterLogin({ tokenFirebase, tokenTwitter, name, id, profileImageURL }))
+    dispatch(twitterLogin({ uid, tokenFirebase, tokenTwitter, name, id, profileImageURL }))
     firebaseUser.update({ uid, tokenFirebase, tokenTwitter, name, id, profileImageURL })
     history.replaceState(null, '/')
   }
