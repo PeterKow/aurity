@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
 // import HeaderMenu from '../../containers/headerMenu/containers/headerMenu.container.jsx';
 // <HeaderMenu/>
-import { RouteHandler } from 'react-router';
+
+const articlesContainerStyle = {
+  font: '14px "Helvetica Neue", Helvetica, Arial, sans-serif',
+  lineHeight: 1.4,
+  background: '#f5f5f5',
+  color: '#4d4d4d',
+  minWidth: 230,
+  maxWidth: 850,
+  margin: '0 auto',
+  WebkitFontSmoothing: 'antialiased',
+  MozFontSmoothing: 'antialiased',
+  fontSmoothing: 'antialiased',
+  fontWeight: 300,
+  boxShadow: 'rgba(0, 0, 0, 0.2) 0px 2px 4px 0px, rgba(0, 0, 0, 0.0980392) 0px 25px 50px 0px',
+};
 
 export default class Layout extends Component {
   render() {
@@ -17,17 +31,6 @@ export default class Layout extends Component {
   }
 }
 
-var articlesContainerStyle = {
-  font: '14px "Helvetica Neue", Helvetica, Arial, sans-serif',
-  lineHeight: 1.4,
-  background: '#f5f5f5',
-  color: '#4d4d4d',
-  minWidth: 230,
-  maxWidth: 850,
-  margin: '0 auto',
-  WebkitFontSmoothing: 'antialiased',
-  MozFontSmoothing: 'antialiased',
-  fontSmoothing: 'antialiased',
-  fontWeight: 300,
-  boxShadow: 'rgba(0, 0, 0, 0.2) 0px 2px 4px 0px, rgba(0, 0, 0, 0.0980392) 0px 25px 50px 0px'
-};
+Layout.propTypes = {
+  children: React.PropTypes.node.isRequired,
+}

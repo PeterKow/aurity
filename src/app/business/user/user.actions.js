@@ -10,7 +10,7 @@ export function twitterLogin(data) {
   return { type: TWITTER_LOGIN, data }
 }
 
-export function twitterFailed(data){
+export function twitterFailed(data) {
   return { type: TWITTER_FAILED, data }
 }
 
@@ -25,16 +25,16 @@ export function kosz() {
 
     // TODO change url generic solution
     return fetch('http://127.0.0.1:8000/profile', {
-      credentials: 'same-origin'
+      credentials: 'same-origin',
     })
       .then(checkStatusCode)
       .then(responseToJson)
       .then(data => {
-        if (data._id && data.twitter.token){
+        if (data._id && data.twitter.token) {
           storage.put('token', data.twitter.token)
           dispatch(twitterLogin(data))
           // TODO create more dumb components and move dispatcher to parent -> actionName=dispatch(actionName()) and then child will just call this! :)
-          //window.history.pushState(null, null, '/')
+          // window.history.pushState(null, null, '/')
         } else {
           handleError()
         }
@@ -42,23 +42,24 @@ export function kosz() {
       .catch(handleError);
 
     // TODO abstract error handling to separate service
-    function responseToJson(res){
+    function responseToJson(res) {
       return res.json()
     }
 
     // TODO abstract error handling to separate service
-    function checkStatusCode(res){
-      if (res.status >= 400)
-        throw new Error("Bad response from server");
+    function checkStatusCode(res) {
+      if (res.status >= 400) {
+        throw new Error('Bad response from server');
+      }
 
       return res
     }
 
-    function handleError(res){
+    function handleError(res) {
       dispatch(twitterFailed())
       console.log('ended BADD!!! from authTwitter', res)
-      //TODO : fix routing not through the window
-      //window.history.pushState(null, null, '/login')
+      // TODO : fix routing not through the window
+      // window.history.pushState(null, null, '/login')
     }
   }
 }

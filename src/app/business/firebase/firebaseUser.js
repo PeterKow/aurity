@@ -1,15 +1,15 @@
 import Firebase from 'firebase'
 
-const userRef = new Firebase("https://aurity.firebaseio.com/users");
+const userRef = new Firebase('https://aurity.firebaseio.com/users');
 
 const user = {
   update: update,
-  get: getUser
+  get: getUser,
 }
 
 function getUser(id) {
   const userId = userRef.child(id)
-  userId.once('value', function(data) {
+  userId.once('value', data => {
     return data.val()
   });
 }

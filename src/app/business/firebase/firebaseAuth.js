@@ -1,9 +1,8 @@
 import Firebase from 'firebase'
 import { twitterSuccess } from 'business/user/user.group.actions.js'
 import store from 'utils/store.js'
-import user from './firebaseUser.js'
 
-const authRef = new Firebase("https://aurity.firebaseio.com");
+const authRef = new Firebase('https://aurity.firebaseio.com');
 
 authRef.onAuth( (authData) => {
   if (authData) {
@@ -13,7 +12,7 @@ authRef.onAuth( (authData) => {
 
 const auth = {
   isLoggedIn: isLoggedIn,
-  logout: logout
+  logout: logout,
 }
 
 export default auth

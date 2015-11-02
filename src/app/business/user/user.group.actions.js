@@ -6,7 +6,7 @@ export function authWithTwitter() {
   return dispatch => {
     dispatch(authTwitter())
     const ref = new Firebase('https://aurity.firebaseio.com');
-    ref.authWithOAuthPopup('twitter', function(error, authData) {
+    ref.authWithOAuthPopup('twitter', (error, authData) => {
       if (error) {
         dispatch(twitterFailed(error))
       } else {
@@ -26,8 +26,8 @@ export function twitterSuccess(authData) {
         accessToken: tokenTwitter,
         displayName: name,
         id,
-        profileImageURL
-        }
+        profileImageURL,
+        },
       } = authData;
 
     dispatch(twitterLogin({ tokenFirebase, tokenTwitter, name, id, profileImageURL }))

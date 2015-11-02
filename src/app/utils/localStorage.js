@@ -5,11 +5,9 @@ const storage = {
   get: (key) => {
     window.localStorage.getItem(key)
   },
-
- remove: (key) => {
-   window.localStorage.removeItem(key)
-  }
-
+  remove: (key) => {
+    window.localStorage.removeItem(key)
+  },
 }
 
 export default storage
