@@ -34,12 +34,6 @@ function getRootChildren(props) {
   return rootChildren
 }
 
-// TODO check redirect!!
-function logout(nextState, redirectTo) {
-  store.dispatch({ type: constants.LOG_OUT })
-  redirectTo('/login')
-}
-
 @connect(({ application }) => ({ application }))
 class Root extends React.Component {
   static propTypes = {
