@@ -9,8 +9,7 @@
     "start_web": "NODE_ENV=development DEVTOOLS=true webpack-dev-server --hot --inline --content-base public",
     "start": "NODE_ENV=development DEVTOOLS=true node ./server.js",
     "deploy": "NODE_ENV=production  DEVTOOLS=false webpack -p --config webpack.production.config.js",
-    "test": "mocha \"src/test\" --compilers js:babel-core/register --recursive",
-    "postinstall": "npm start deploy"
+    "test": "mocha \"src/test\" --compilers js:babel-core/register --recursive"
   },
   "repository": {
     "type": "git",
@@ -55,7 +54,6 @@
     "install": "^0.2.6",
     "isomorphic-fetch": "^2.1.1",
     "keymirror": "^0.1.1",
-    "less": "^2.5.3",
     "lodash": "^3.10.1",
     "moment": "^2.10.6",
     "mongoose": "^4.2.4",
