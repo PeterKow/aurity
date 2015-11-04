@@ -15,12 +15,13 @@ import Login from './pages/login/loginPage.js'
 // import createHashHistory from 'history/lib/createHashHistory';
 
 
-import auth from 'business/firebase/firebaseAuth.js'
+//import auth from 'business/firebase/firebaseAuth.js'
 
 function requireAuth(nextState, replaceState) {
-  if (!auth.isLoggedIn()) {
-    replaceState({nextPathname: nextState.location.pathname}, '/login')
-  }
+ // TODO add new validation
+  //if (!auth.isLoggedIn()) {
+  //  replaceState({nextPathname: nextState.location.pathname}, '/login')
+  //}
 }
 
 function redirectHome(nextState, replaceState) {

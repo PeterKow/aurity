@@ -1,7 +1,7 @@
 import { authTwitter, twitterFailed, twitterLogin, twitterLogout } from './user.actions.js'
-import firebaseUser from 'business/firebase/firebaseUser.js'
-import firebaseAuth from 'business/firebase/firebaseAuth.js'
-import Firebase from 'firebase'
+//import firebaseUser from 'business/firebase/firebaseUser.js'
+//import firebaseAuth from 'business/firebase/firebaseAuth.js'
+//import Firebase from 'firebase'
 import history from 'utils/history.js'
 
 export function authWithTwitter() {
@@ -22,7 +22,7 @@ export function authWithTwitter() {
 export function logout() {
   return dispatch => {
     dispatch(twitterLogout())
-    firebaseAuth.logout()
+    //firebaseAuth.logout()
   }
 }
 
@@ -41,7 +41,7 @@ export function twitterSuccess(authData) {
       } = authData;
 
     dispatch(twitterLogin({ uid, tokenFirebase, tokenTwitter, name, id, profileImageURL }))
-    firebaseUser.update({ uid, tokenFirebase, tokenTwitter, name, id, profileImageURL })
+    //firebaseUser.update({ uid, tokenFirebase, tokenTwitter, name, id, profileImageURL })
     console.log('location', window.location.pathname)
     if ( window.location.pathname !== '/') {
       console.log('goo')
