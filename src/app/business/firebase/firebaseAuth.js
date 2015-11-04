@@ -5,8 +5,9 @@ import store from 'utils/store.js'
 const authRef = new Firebase('https://aurity.firebaseio.com');
 
 authRef.onAuth( (authData) => {
+  console.log('twitter success')
   if (authData) {
-    store.dispatch(twitterSuccess(authData))
+    //store.dispatch(twitterSuccess(authData))
   }
 });
 

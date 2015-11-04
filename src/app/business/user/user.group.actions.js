@@ -8,12 +8,12 @@ export function authWithTwitter() {
   return dispatch => {
     dispatch(authTwitter())
     const ref = new Firebase('https://aurity.firebaseio.com');
-    ref.authWithOAuthPopup('twitter', (error) => {
+    ref.authWithOAuthPopup('twitter', (error, authData) => {
       if (error) {
         dispatch(twitterFailed(error))
       } else {
         // we will get update from auth firebase
-        // dispatch(twitterSuccess(authData))
+         dispatch(twitterSuccess(authData))
       }
     })
   }
@@ -42,7 +42,11 @@ export function twitterSuccess(authData) {
 
     dispatch(twitterLogin({ uid, tokenFirebase, tokenTwitter, name, id, profileImageURL }))
     firebaseUser.update({ uid, tokenFirebase, tokenTwitter, name, id, profileImageURL })
-    history.pushState(null, '/', '/')
+    console.log('location', window.location.pathname)
+    if ( window.location.pathname !== '/') {
+      console.log('goo')
+      history.replaceState(null, '/')
+    }
   }
 }
 

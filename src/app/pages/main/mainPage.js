@@ -5,8 +5,13 @@ import Filter from 'containers/articles/components/filter.js';
 import Articles from 'containers/articles/containers/articles.container.js'
 import { setVisibilityFilter, VisibilityFilters, }
   from 'containers/articles/article.actions.js'
+import { fetchMiniArticles } from 'containers/articles/articleGroup.actions.js'
 
 export default class MainPage extends Component {
+
+  //componentWillMount() {
+  //  this.props.dispatch(fetchMiniArticles())
+  //}
 
   render() {
     const { dispatch, miniArticles, visibilityFilter } = this.props
@@ -28,7 +33,7 @@ export default class MainPage extends Component {
 
 MainPage.propTypes = {
   dispatch: React.PropTypes.func,
-  miniArticles: React.PropTypes.array.isRequired,
+  miniArticles: React.PropTypes.array,
   visibilityFilter: React.PropTypes.oneOf([
     'SHOW_ALL',
     'SHOW_COMPLETED',

@@ -23,6 +23,10 @@ function requireAuth(nextState, replaceState) {
   }
 }
 
+function redirectHome(nextState, replaceState) {
+  replaceState({}, '/')
+}
+
 function renderRoutes(history) {
   return (
     <Router history={history}>
@@ -30,6 +34,7 @@ function renderRoutes(history) {
         <Route path="/" component={ MainPage} onEnter={requireAuth} />
       </Route>
       <Route path="login" component={ Login } />
+      <Route path="*" onEnter={redirectHome}/>
 
     </Router>
   )

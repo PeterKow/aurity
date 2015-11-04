@@ -32,14 +32,6 @@ export function newMiniArticles(miniArticles) {
   return { type: NEW_MINI_ARTICLES, miniArticles}
 }
 
-export function fetchMiniArticles() {
-  return dispatch => {
-    dispatch({ type: FETCH_MINI_ARTICLES })
-    return fetch('https://api.github.com/users/peterkow')
-      .then(res => res.json())
-  }
-}
-
 export function fetchMiniArticlesFailed() {
   return { type: FETCH_MINI_ARTICLES_FAILED}
 }

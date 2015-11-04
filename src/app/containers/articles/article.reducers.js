@@ -1,7 +1,7 @@
 import { COMPLETE_MINI_ARTICLE, SET_VISIBILITY_FILTER, NEW_MINI_ARTICLES, VisibilityFilters,
-         FETCH_MINI_ARTICLES, FETCH_MINI_ARTICLES_FAILED } from './article.actions.js';
+         FETCH_MINI_ARTICLES, FETCH_MINI_ARTICLES_FAILED } from './article.actions.js'
 import { twitterResultsSimple } from './mockTwitterResults.js'
-const { SHOW_ALL } = VisibilityFilters;
+const { SHOW_ALL } = VisibilityFilters
 
 
 const initialState = twitterResultsSimple;
