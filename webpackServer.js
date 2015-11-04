@@ -2,7 +2,7 @@
  * Created by Peter on 30/08/15.
  */
 
-export default function init(app) {
+module.exports = function init(app) {
   var httpProxy = require('http-proxy');
   var proxy = httpProxy.createProxyServer();
   var isProduction = process.env.NODE_ENV === 'production';

@@ -2,7 +2,7 @@
  * Created by Peter on 26/08/15.
  */
 
-export default {
+module.exports = {
   TOKEN_SECRET: process.env.TOKEN_SECRET || 'VeryHardStringgg',
   MONGO_DB: {
     MONGO_URI: process.env.MONGO_URI || 'mongodb://localhost:27017/twitterReact',

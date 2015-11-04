@@ -1,11 +1,11 @@
 /**
  * Created by Peter on 18/04/15.
  */
-import mongoose from 'mongoose';
+var mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-const userSchema = new Schema({
+var userSchema = new Schema({
   twitter          : {
     id           : {type: String, required: true},
     token        : String,
@@ -20,4 +20,4 @@ const userSchema = new Schema({
 userSchema.path('twitter.displayName').required(true, 'Display name is required');
 userSchema.path('twitter.id').required(true, 'Twitter id is required');
 
-export default mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', userSchema);

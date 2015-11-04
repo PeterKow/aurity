@@ -1,15 +1,15 @@
 /**
  * Created by Peter on 26/08/15.
  */
-import passport from 'passport';
-import { Strategy as LocalStrategy } from  'passport-local';
-import { Strategy as TwitterStrategy } from  'passport-twitter';
-import flash from 'connect-flash';
-import session from 'express-session';
-import User from  './model/user.model';
-import twitterConfig from './config';
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var TwitterStrategy = require('passport-twitter').Strategy;
+var flash = require('connect-flash');
+var session = require('express-session');
+var User = require('./model/user.model');
+var twitterConfig = require('./config');
 
-export default function init(app) {
+module.exports = function init(app) {
 
 // load the auth variables
 
