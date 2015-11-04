@@ -9,7 +9,7 @@
     "start_web": "NODE_ENV=development DEVTOOLS=true webpack-dev-server --hot --inline --content-base public",
     "start": "NODE_ENV=development DEVTOOLS=true node ./server.js",
     "deploy": "NODE_ENV=production  DEVTOOLS=false webpack -p --config webpack.production.config.js",
-    "test": "mocha \"src/test\" --compilers js:babel-core/register --recursive"
+    "test": "mocha \"src/test\" --compilers js:babel-core/register --recursive",
     "postinstall": "npm start deploy"
   },
   "repository": {
