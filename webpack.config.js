@@ -76,6 +76,7 @@ var config = {
   // We have to manually add the Hot Replacement plugin when running
   // from Node
   plugins: [
+    new Webpack.HotModuleReplacementPlugin(),
     new Webpack.NoErrorsPlugin(),
     new Webpack.DefinePlugin({
       'process.env': {

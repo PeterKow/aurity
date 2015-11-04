@@ -2,11 +2,12 @@
   "name": "aurity",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "lint": "eslint .; exit 0",
     "babel-node": "babel-node --stage 0 ",
-    "start": "NODE_ENV=development DEVTOOLS=true webpack-dev-server --hot --inline --content-base public",
+    "start_web": "NODE_ENV=development DEVTOOLS=true webpack-dev-server --hot --inline --content-base public",
+    "start": "NODE_ENV=development DEVTOOLS=true npm run babel-node -- server.js",
     "deploy": "NODE_ENV=production  DEVTOOLS=false webpack -p --config webpack.production.config.js",
     "test": "mocha \"src/test\" --compilers js:babel-core/register --recursive"
   },
