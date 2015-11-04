@@ -7,7 +7,7 @@ var mainPath = path.resolve(mainDir, 'main.js');
 var config = {
   entry: path.resolve(__dirname, 'src/app/main.js'),
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'src', 'public'),
     filename: '/build/bundle.js'
   },
   module: {

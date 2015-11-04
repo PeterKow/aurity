@@ -7,15 +7,15 @@ import history from 'utils/history.js'
 export function authWithTwitter() {
   return dispatch => {
     dispatch(authTwitter())
-    const ref = new Firebase('https://aurity.firebaseio.com');
-    ref.authWithOAuthPopup('twitter', (error, authData) => {
-      if (error) {
-        dispatch(twitterFailed(error))
-      } else {
-        // we will get update from auth firebase
-         dispatch(twitterSuccess(authData))
-      }
-    })
+    //const ref = new Firebase('https://aurity.firebaseio.com');
+    //ref.authWithOAuthPopup('twitter', (error, authData) => {
+    //  if (error) {
+    //    dispatch(twitterFailed(error))
+    //  } else {
+    //    // we will get update from auth firebase
+    //     dispatch(twitterSuccess(authData))
+    //  }
+    //})
   }
 }
 
