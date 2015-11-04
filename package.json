@@ -28,7 +28,6 @@
     "eslint-config-airbnb": "^0.1.0",
     "eslint-plugin-react": "^3.6.3",
     "mocha": "^2.3.3",
-    "mongoose": "^4.1.11",
     "nock": "^2.15.0",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.3",
