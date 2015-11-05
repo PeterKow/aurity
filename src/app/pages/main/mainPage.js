@@ -5,14 +5,14 @@ import Filter from 'containers/articles/components/filter.js';
 import Articles from 'containers/articles/containers/articles.container.js'
 import { setVisibilityFilter, VisibilityFilters, }
   from 'containers/articles/article.actions.js'
-import { fetchMiniArticles } from 'containers/articles/articleGroup.actions.js'
+import { startFetchMiniArticles } from 'containers/articles/articleGroup.actions.js'
 
 export default class MainPage extends Component {
 
   componentWillMount() {
     const { dispatch } = this.props
 
-    dispatch(fetchMiniArticles())
+    dispatch(startFetchMiniArticles())
   }
 
   render() {

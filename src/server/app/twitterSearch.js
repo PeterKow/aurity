@@ -22,7 +22,9 @@ module.exports = function(app){
       // user_id: 'gopeterpanworld'
       // id: '210462857140252672'
       // screen_name: "rsarver"
-      q: "%23freebandnames&since_id=24012619984051000&max_id=250126199840518145&result_type=mixed&count=4"
+      //q: "%23freebandnames&since_id=24012619984051000&max_id=250126199840518145&result_type=mixed&count=4"
+      q: "job OR hire OR hiring OR looking OR apply AND react"
+      //q: "@peter_kow"
       //q: req.params
     };
 

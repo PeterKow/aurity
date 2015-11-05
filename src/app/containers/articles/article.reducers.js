@@ -1,5 +1,5 @@
 import { COMPLETE_MINI_ARTICLE, SET_VISIBILITY_FILTER, NEW_MINI_ARTICLES, VisibilityFilters,
-         FETCH_MINI_ARTICLES, FETCH_MINI_ARTICLES_FAILED } from './article.actions.js'
+         FETCH_MINI_ARTICLES, FETCH_MINI_ARTICLES_FAILED, FETCH_MINI_ARTICLES_SUCCESS } from './article.actions.js'
 import { twitterResultsSimple } from './mockTwitterResults.js'
 const { SHOW_ALL } = VisibilityFilters
 
@@ -20,8 +20,8 @@ export function miniarticles(state = initialState, action = { type: undefined}) 
   switch (action.type) {
     case FETCH_MINI_ARTICLES:
       return { isFetching: true }
-    case NEW_MINI_ARTICLES:
-      return action.newMiniArticles;
+    case FETCH_MINI_ARTICLES_SUCCESS:
+      return action.data;
     case FETCH_MINI_ARTICLES_FAILED:
       return { error: action.data};
     case COMPLETE_MINI_ARTICLE:

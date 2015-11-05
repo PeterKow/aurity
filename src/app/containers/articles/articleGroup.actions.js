@@ -1,17 +1,20 @@
-import { FETCH_MINI_ARTICLES } from './article.actions.js'
+import { fetchMiniArticles, fetchMiniArticlesSuccess, fetchMiniArticlesFailed } from './article.actions.js'
 
-export function fetchMiniArticles() {
+export function startFetchMiniArticles() {
   return dispatch => {
-    dispatch({type: FETCH_MINI_ARTICLES})
+    dispatch(fetchMiniArticles())
 
     return fetch('/search/twitter', {
       method: 'post',
     })
       .then(res => res.json())
-      .then(res => console.log('res', res))
-      .catch(response => {
-        console.log('response', response)
-
+      .then(res => {
+        dispatch(fetchMiniArticlesSuccess(res.message.statuses))
+        console.log('res', res)
+      })
+      .catch(res => {
+        console.log('FAILED res ', res)
+        dispatch(fetchMiniArticlesFailed(res))
       })
     //return fetch('https://api.twitter.com/1.1/statuses/show.json?id=210462857140252672')
     //  , {
