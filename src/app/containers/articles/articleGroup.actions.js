@@ -9,7 +9,9 @@ export function startFetchMiniArticles() {
     })
       .then(res => res.json())
       .then(res => {
-        dispatch(fetchMiniArticlesSuccess(res.message.statuses))
+        const data = res.message.statuses.map(mapTwitterResponse)
+
+        dispatch(fetchMiniArticlesSuccess(data))
         console.log('res', res)
       })
       .catch(res => {
@@ -37,50 +39,11 @@ export function startFetchMiniArticles() {
   }
 }
 
-// Create the XHR object.
-function createCORSRequest(method, url) {
-  var xhr = new XMLHttpRequest();
-  if ("withCredentials" in xhr) {
-    // XHR for Chrome/Firefox/Opera/Safari.
-    xhr.open(method, url, true);
-  } else if (typeof XDomainRequest != "undefined") {
-    // XDomainRequest for IE.
-    xhr = new XDomainRequest();
-    xhr.open(method, url);
-  } else {
-    // CORS not supported.
-    xhr = null;
+function mapTwitterResponse(data) {
+  return {
+    id: data.id,
+    text: data.text,
+    completed: false,
+    image: data.user.profile_image_url_https,
   }
-  return xhr;
-}
-
-// Helper method to parse the title tag from the response.
-function getTitle(text) {
-  return text.match('<title>(.*)?</title>')[1];
-}
-
-// Make the actual CORS request.
-function makeCorsRequest() {
-  // All HTML5 Rocks properties support CORS.
-  var url = 'https://api.twitter.com/1.1/search/tweets.json?%23freebandnames&since_id=24012619984051000&max_id=250126199840518145&result_type=mixed&count=4';
-
-  var xhr = createCORSRequest('GET', url);
-  if (!xhr) {
-    alert('CORS not supported');
-    return;
-  }
-
-  // Response handlers.
-  xhr.onload = function() {
-    var text = xhr.responseText;
-    var title = getTitle(text);
-    alert('Response from CORS request to ' + url + ': ' + title);
-  };
-
-  xhr.onerror = function() {
-    debugger;
-    alert('Woops, there was an error making the request.');
-  };
-
-  xhr.send();
 }
