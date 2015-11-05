@@ -28,6 +28,10 @@ function redirectHome(nextState, replaceState) {
   replaceState({}, '/')
 }
 
+function authMe(nextState, replaceState) {
+
+}
+
 function renderRoutes(history) {
   return (
     <Router history={history}>
@@ -35,6 +39,7 @@ function renderRoutes(history) {
         <Route path="/" component={ MainPage} />
       </Route>
       <Route path="login" component={ Login } />
+      <Route path="authMe" component={ Login } onEnter={ authMe } />
       <Route path="*" onEnter={redirectHome}/>
 
     </Router>

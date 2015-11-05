@@ -9,9 +9,11 @@ import { fetchMiniArticles } from 'containers/articles/articleGroup.actions.js'
 
 export default class MainPage extends Component {
 
-  //componentWillMount() {
-  //  this.props.dispatch(fetchMiniArticles())
-  //}
+  componentWillMount() {
+    const { dispatch } = this.props
+
+    dispatch(fetchMiniArticles())
+  }
 
   render() {
     const { dispatch, miniArticles, visibilityFilter } = this.props

@@ -1,7 +1,12 @@
 /**
  * Created by Peter on 29/08/15.
  */
+var twitterSearch = require('./twitterSearch')
+
 module.exports = function(app, passport) {
+
+  // add routes for twitter search
+  twitterSearch(app)
 
   // route for home page
   app.get('/', function(req, res) {
@@ -36,7 +41,7 @@ module.exports = function(app, passport) {
   // handle the callback after twitter has authenticated the user
   app.get('/auth/twitter/callback',
     passport.authenticate('twitter', {
-    successRedirect : '/profileMe',
+    successRedirect : '/authMe',
     failureRedirect : '/login'
   }))
 

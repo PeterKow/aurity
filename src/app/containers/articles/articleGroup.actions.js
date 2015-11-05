@@ -3,6 +3,16 @@ import { FETCH_MINI_ARTICLES } from './article.actions.js'
 export function fetchMiniArticles() {
   return dispatch => {
     dispatch({type: FETCH_MINI_ARTICLES})
+
+    return fetch('/search/twitter', {
+      method: 'post',
+    })
+      .then(res => res.json())
+      .then(res => console.log('res', res))
+      .catch(response => {
+        console.log('response', response)
+
+      })
     //return fetch('https://api.twitter.com/1.1/statuses/show.json?id=210462857140252672')
     //  , {
     //  headers: {
