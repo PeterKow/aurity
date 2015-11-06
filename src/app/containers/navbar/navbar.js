@@ -25,8 +25,8 @@ export default class Navbar extends Component {
             <li style={{cursor: 'pointer' }}
                 onClick={() => store.dispatch(startFetchMiniArticles())}><a>New search</a>
             </li>
-            <li><Link to="/login">Link</Link></li>
-            <li><a href="/auth/twitter">Logout</a></li>
+            <li><Link to="/login">Login</Link></li>
+            <li><a href="/auth/twitter">Login direct</a></li>
             <li className="dropdown">
               <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
               <ul className="dropdown-menu">

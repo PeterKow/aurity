@@ -1,14 +1,13 @@
 import { fetchMiniArticles, fetchMiniArticlesSuccess, fetchMiniArticlesFailed } from './article.actions.js'
+import fetchService from 'utils/fetch'
 
 export function startFetchMiniArticles() {
   return dispatch => {
     dispatch(fetchMiniArticles())
 
-    return fetch('/search/twitter', {
-      credentials: 'same-origin',
+    return fetchService('/search/twitter', {
       method: 'post',
     })
-      .then(res => res.json())
       .then(res => {
         const data = res.message.statuses.map(mapTwitterResponse)
 

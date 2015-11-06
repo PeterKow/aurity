@@ -5,6 +5,7 @@ const actionTypes = new KeyMirror({
   TWITTER_LOGIN: null,
   TWITTER_FAILED: null,
   TWITTER_LOGOUT: null,
+  UNAUTHORISED: null,
 })
 
 Object.freeze(actionTypes)
