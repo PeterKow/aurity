@@ -18,8 +18,8 @@ export function twitterLogout() {
   return { type: TWITTER_LOGOUT }
 }
 
-export function unauthorised() {
-  return { type: UNAUTHORISED }
+export function unauthorised(data) {
+  return { type: UNAUTHORISED, data }
 }
 
 
