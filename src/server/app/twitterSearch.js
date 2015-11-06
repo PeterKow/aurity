@@ -45,6 +45,15 @@ module.exports = function(app){
     }, function(e, r, result) {
 
       console.log("result", result);
+
+      if(result.errors){
+        console.log("result error", result.errors[0].code);
+        if (result.errors[0].code === 32) {
+          return res.status(401).send({
+            message: result.errors[0].message
+          });
+        }
+      }
       // console.log(result);
       return res.status(200).send({
         message: result
