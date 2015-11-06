@@ -44,7 +44,7 @@ module.exports = function(app){
       json: true
     }, function(e, r, result) {
 
-      console.log("result");
+      console.log("result", result);
       // console.log(result);
       return res.status(200).send({
         message: result

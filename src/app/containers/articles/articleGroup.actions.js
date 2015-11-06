@@ -9,6 +9,7 @@ export function startFetchMiniArticles() {
       method: 'post',
     })
       .then(res => {
+        console.log('res fetch', res)
         const data = res.message.statuses.map(mapTwitterResponse)
 
         dispatch(fetchMiniArticlesSuccess(data))

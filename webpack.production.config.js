@@ -42,7 +42,7 @@ var config = {
     new Webpack.NoErrorsPlugin(),
     new Webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('development'),
+        'NODE_ENV': JSON.stringify('production'),
         'DEVTOOLS': process.env.DEVTOOLS === 'true' ? true : false
       },
     })],
