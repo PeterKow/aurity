@@ -1,20 +1,15 @@
 var qs = require('querystring');
 var request = require('request');
+var auth = require('../utils/auth.js')
 
 
 module.exports = function(app){
 
-  app.post('/search/twitter', function(req, res) {
-
-    // console.log("stubbed request");
-    // return res.status(200).send({
-    //     message: getSearchTwitter()
-    // });
+  app.post('/search/twitter', auth.checkCookie, function(req, res) {
 
     console.log(req.body);
     console.log("sdsd");
 
-    // var url = 'https://api.twitter.com/1.1/users/show.json?';
     var url = 'https://api.twitter.com/1.1/search/tweets.json?';
 
     var params = {

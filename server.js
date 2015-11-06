@@ -22,7 +22,6 @@ app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
 
-
 var publicPath = path.resolve(__dirname, 'src/public');
 console.log('public path: ', publicPath)
 app.use(express.static(publicPath));
