@@ -1,9 +1,16 @@
 import { fetchMiniArticles, fetchMiniArticlesSuccess, fetchMiniArticlesFailed } from './article.actions.js'
+import { unauthorised } from 'business/user/user.group.actions'
 import fetchService from 'utils/fetch'
+import auth from 'utils/auth'
 
 export function startFetchMiniArticles() {
   return dispatch => {
     dispatch(fetchMiniArticles())
+
+    const twitterTokens = auth.getTwitterTokens()
+    if (!twitterTokens) {
+      return dispatch(unauthorised('notTokensOnTheClient'))
+    }
 
     return fetchService('/search/twitter', {
       method: 'post',
@@ -11,10 +18,7 @@ export function startFetchMiniArticles() {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        token: '1627149078-W11Zxz9Kffwf7sskctuhChgNKPxMzzavXarkM4k',
-        token_secret: 'dfuTWCuExC145nbQQYNCmKPNlapxG6LFh7FKQPsoS0nwD',
-      }),
+      body: JSON.stringify(twitterTokens),
     })
       .then(res => {
         const data = res.message.statuses.map(mapTwitterResponse)

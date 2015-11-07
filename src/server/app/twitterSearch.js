@@ -31,7 +31,7 @@ module.exports = function(app){
       consumer_key: process.env.TWITTER_KEY,
       consumer_secret:  process.env.TWITTER_SECRET,
       token: req.body.token,
-      token_secret: req.body.token_secret,
+      token_secret: req.body.secret,
     };
 
     console.log('auth --> ', oauth)

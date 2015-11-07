@@ -41,6 +41,6 @@ export function fetchMiniArticlesSuccess(data) {
   return { type: FETCH_MINI_ARTICLES_SUCCESS, data}
 }
 
-export function fetchMiniArticlesFailed() {
-  return { type: FETCH_MINI_ARTICLES_FAILED}
+export function fetchMiniArticlesFailed(data) {
+  return { type: FETCH_MINI_ARTICLES_FAILED, data}
 }

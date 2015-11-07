@@ -11,8 +11,8 @@ module.exports = function(app, passport) {
 
 
   // route for showing the profile page
-  app.get('/profile', function(req, res) {
-    const response = req.user ? req.user : {}
+  app.get('/profile', isLoggedIn, function(req, res) {
+    const response = req.user
     console.log('res -- profile', response, req.isAuthenticated())
     return res.send(response);
   });

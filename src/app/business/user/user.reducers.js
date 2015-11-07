@@ -10,13 +10,12 @@ function userReducer(state = initialState, action = { type: undefined }) {
       return state.set('fetchingAuth', true)
     case TWITTER_FAILED:
       return state.set('fetchingAuth', false)
+    case UNAUTHORISED:
+      return state.set('fetchingAuth', false)
     case TWITTER_LOGIN:
       return state.merge(state, createUser(action.data))
     case TWITTER_LOGOUT:
       return createInitialState()
-    case UNAUTHORISED:
-      history.pushState(null, '/login', '/login')
-      return state
     case LOGIN_SUCCESS:
       return state.merge(state, createUser(action.data))
     default:

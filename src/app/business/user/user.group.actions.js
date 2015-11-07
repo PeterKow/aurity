@@ -1,6 +1,7 @@
 import { authTwitter, twitterFailed, twitterLogin, twitterLogout } from './user.actions.js'
-import { LOGIN_SUCCESS } from './user.actionTypes'
+import { LOGIN_SUCCESS, UNAUTHORISED } from './user.actionTypes'
 import history from 'utils/history.js'
+import auth from 'utils/auth'
 
 export function authWithTwitter() {
   return dispatch => {
@@ -14,10 +15,19 @@ export function logout() {
   }
 }
 
+export function unauthorised(data) {
+  history.pushState(null, '/login', '/login')
+  return { type: UNAUTHORISED, data }
+}
+
 export function loginSuccess(response) {
-  const { __v, ...data } = response
-  history.replaceState(null, '/')
-  return { type: LOGIN_SUCCESS, data }
+  return dispatch => {
+    const { __v, ...data } = response
+    dispatch({type: LOGIN_SUCCESS, data})
+    const { twitter: { secret, token }} = data
+    auth.setTwitterTokens({ token, secret })
+    history.replaceState(null, '/')
+  }
 }
 
 export function twitterSuccess(authData) {

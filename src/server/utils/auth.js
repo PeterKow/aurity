@@ -1,6 +1,6 @@
 module.exports = {
   isLoggedIn: isLoggedIn,
-  checkCookie: checkCookie
+  checkCookie: checkCookie,
 }
 
 // route middleware to make sure a user is logged in

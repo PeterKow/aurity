@@ -1,4 +1,4 @@
-import { unauthorised } from 'business/user/user.actions'
+import { unauthorised } from 'business/user/user.group.actions'
 import store from 'utils/store'
 
 export default function fetchService(url = throwIfMissing(), { credentials = 'same-origin', method = 'get', ...other } = {}) {
@@ -18,7 +18,7 @@ function throwIfMissing() {
 function checkErrors(res) {
   switch (res.status) {
     case 401:
-      store.dispatch(unauthorised())
+      store.dispatch(unauthorised('Api call unauthorised'))
       throw new Error('Unauthorised');
       break;
     default:
