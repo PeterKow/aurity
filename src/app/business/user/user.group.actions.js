@@ -13,6 +13,7 @@ export function authWithTwitter() {
         dispatch(twitterFailed(error))
       } else {
         // we will get update from auth firebase
+        console.log('authData', authData)
          dispatch(twitterSuccess(authData))
       }
     })

@@ -2,8 +2,42 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import store from 'utils/store.js'
 import { logout } from 'business/user/user.group.actions.js'
+//import Twit from 'twit'
+
+import Twit from 'node-twitter'
 
 export default class Navbar extends Component {
+  twitter(){
+    //accessToken: "1627149078-W11Zxz9Kffwf7sskctuhChgNKPxMzzavXarkM4k"
+    //accessTokenSecret: "dfuTWCuExC145nbQQYNCmKPNlapxG6LFh7FKQPsoS0nwD"
+
+    console.log('starttwtt')
+    var T = new Twit.SearchClient({
+      consumer_key:         '1627149078-W11Zxz9Kffwf7sskctuhChgNKPxMzzavXarkM4k'
+      , consumer_secret:      'dfuTWCuExC145nbQQYNCmKPNlapxG6LFh7FKQPsoS0nwD'
+      , access_token:         'QFX2VuvqJDIwAorheGUyafkvW'
+      , access_token_secret:  'lDtbSxgEtBVe5wyQYdY2zOU4Y77ZtlocSXaH2ex5gbTR28sKs9'
+    })
+
+    T.search({'q': 'node.js'}, function(error, result) {
+      if (error)
+      {
+        console.log('Error: ' + (error.code ? error.code + ' ' + error.message : error.message));
+      }
+
+      if (result)
+      {
+        console.log(result);
+      }
+    });
+
+
+    //T.get('search/tweets', { q: 'banana', count: 100 }, function(err, data, response) {
+    //  console.log('err',err)
+    //  console.log('data',data)
+    //})
+  }
+
   render() {
     return (<nav className="navbar navbar-default">
       <div className="container-fluid">
@@ -19,7 +53,7 @@ export default class Navbar extends Component {
         <div id="navbar" className="navbar-collapse collapse">
           <ul className="nav navbar-nav">
             <li className="active"><a href="/">Home</a></li>
-            <li><a href="/search">Search</a></li>
+            <li onClick={this.twitter}><a>Search</a></li>
             <li><Link to="/login">Link</Link></li>
             <li onClick={()=> store.dispatch(logout())}><a href="">Logout</a></li>
             <li className="dropdown">

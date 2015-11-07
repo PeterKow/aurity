@@ -57,7 +57,8 @@ var config = {
       { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
       {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader"
-      }
+      },
+      { test: /\.json$/, loader: 'json-loader' },
 
     ]
   },
@@ -70,7 +71,12 @@ var config = {
       persistence: path.resolve(mainDir, 'persistance'),
       utils: path.resolve(mainDir, 'utils')
     },
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.webpack.js', '.web.js', '.js', '.jsx']
+  },
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
   },
 
   // We have to manually add the Hot Replacement plugin when running

@@ -2,6 +2,8 @@ import { AUTH_TWITTER, TWITTER_LOGIN, TWITTER_FAILED, TWITTER_LOGOUT } from './u
 import fetch from 'isomorphic-fetch'
 import * as storage from '../../persistance/storage.js'
 
+import Twit from 'node-twitter'
+
 export function authTwitter() {
   return { type: AUTH_TWITTER }
 }
@@ -32,6 +34,30 @@ export function kosz() {
       .then(data => {
         if (data._id && data.twitter.token) {
           storage.put('token', data.twitter.token)
+
+          //accessToken: "1627149078-W11Zxz9Kffwf7sskctuhChgNKPxMzzavXarkM4k"
+          //accessTokenSecret: "dfuTWCuExC145nbQQYNCmKPNlapxG6LFh7FKQPsoS0nwD"
+
+          var T = new Twit({
+            consumer_key:         '1627149078-W11Zxz9Kffwf7sskctuhChgNKPxMzzavXarkM4k'
+            , consumer_secret:      'dfuTWCuExC145nbQQYNCmKPNlapxG6LFh7FKQPsoS0nwD'
+            , access_token:         'QFX2VuvqJDIwAorheGUyafkvW'
+            , access_token_secret:  'lDtbSxgEtBVe5wyQYdY2zOU4Y77ZtlocSXaH2ex5gbTR28sKs9'
+          })
+
+          var params = {screen_name: 'nodejs'};
+          T.get('statuses/user_timeline', params, function(error, tweets, response){
+            if (!error) {
+              console.log(tweets);
+            }
+          });
+
+          //T.get('search/tweets', { q: 'banana', count: 100 }, function(err, data, response) {
+          //  console.log('err',err)
+          //  console.log('data',data)
+          //})
+
+
           dispatch(twitterLogin(data))
           // TODO create more dumb components and move dispatcher to parent -> actionName=dispatch(actionName()) and then child will just call this! :)
         } else {
