@@ -7,8 +7,7 @@ module.exports = function(app){
 
   app.post('/search/twitter', auth.checkCookie, function(req, res) {
 
-    console.log(req.body);
-    console.log("sdsd");
+    console.log('Request -->', req.body);
 
     var url = 'https://api.twitter.com/1.1/search/tweets.json?';
 
@@ -31,8 +30,8 @@ module.exports = function(app){
     var oauth = {
       consumer_key: process.env.TWITTER_KEY,
       consumer_secret:  process.env.TWITTER_SECRET,
-      token: '1627149078-W11Zxz9Kffwf7sskctuhChgNKPxMzzavXarkM4k',
-      token_secret: 'dfuTWCuExC145nbQQYNCmKPNlapxG6LFh7FKQPsoS0nwD'
+      token: req.body.token,
+      token_secret: req.body.token_secret,
     };
 
     console.log('auth --> ', oauth)
@@ -44,7 +43,7 @@ module.exports = function(app){
       json: true
     }, function(e, r, result) {
 
-      console.log("result", result);
+      //console.log("result", result);
 
       if(result.errors){
         console.log("result error", result.errors[0].code);

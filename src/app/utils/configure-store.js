@@ -11,7 +11,6 @@ const storeEnhancers = []
 
 // todo: add it to webpack global config
 const __DEVTOOLS__ = process.env.DEVTOOLS;
-console.log('__DEVTOOLS__', __DEVTOOLS__)
 if (__DEVTOOLS__) {
   storeEnhancers.push(DevTools.instrument())
   storeEnhancers.push(persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/)))

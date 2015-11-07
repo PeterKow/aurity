@@ -19,6 +19,7 @@ export function visibilityFilter(state = SHOW_ALL, action = { type: undefined}) 
 export function miniarticles(state = initialState, action = { type: undefined}) {
   switch (action.type) {
     case FETCH_MINI_ARTICLES:
+      // TODO: change this to immutable, it should be an array but we need also object
       return { isFetching: true }
     case FETCH_MINI_ARTICLES_SUCCESS:
       return action.data;
