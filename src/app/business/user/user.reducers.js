@@ -1,5 +1,5 @@
 import Immutable from 'immutable'
-import { AUTH_TWITTER, TWITTER_FAILED, TWITTER_LOGIN, TWITTER_LOGOUT, UNAUTHORISED } from './user.actionTypes.js'
+import { AUTH_TWITTER, TWITTER_FAILED, TWITTER_LOGIN, TWITTER_LOGOUT, UNAUTHORISED, LOGIN_SUCCESS } from './user.actionTypes.js'
 import history from 'utils/history'
 
 const initialState = createInitialState()
@@ -17,6 +17,8 @@ function userReducer(state = initialState, action = { type: undefined }) {
     case UNAUTHORISED:
       history.pushState(null, '/login', '/login')
       return state
+    case LOGIN_SUCCESS:
+      return state.merge(state, createUser(action.data))
     default:
       return state
   }
@@ -31,17 +33,18 @@ function createInitialState() {
 }
 
 function createUser(data) {
-  const { uid, tokenFirebase, tokenTwitter, name, id, profileImageURL } = data
+  //const { uid, tokenFirebase, tokenTwitter, name, id, profileImageURL } = data
 
   const user = {
-    name,
-    idFirebase: uid,
-    tokenFirebase,
-    profileImageURL,
-    twitter: {
-      token: tokenTwitter,
-      id,
-    },
+    //name,
+    //idFirebase: uid,
+    //tokenFirebase,
+    //profileImageURL,
+    //twitter: {
+    //  token: tokenTwitter,
+    //  id,
+    //},
+    ...data,
     fetchingAuth: false,
   }
 

@@ -90,7 +90,7 @@ function loginOrCreateNewUserAndLogin(token, tokenSecret, profile, done) {
   });
 }
 
-function createNewTwitterUser(profile, token, tokenSecret){
+function createNewTwitterUser(profile, token, tokenSecret) {
   var newUser = new User();
 
   // set all of the user data that we need

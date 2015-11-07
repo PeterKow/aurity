@@ -38,7 +38,7 @@ module.exports = function(app, passport) {
   // handle the callback after twitter has authenticated the user
   app.get('/auth/twitter/callback',
     passport.authenticate('twitter', {
-    successRedirect : '/',
+    successRedirect : '/authMe',
     failureRedirect : '/login'
       // TODO check example below for full redirection
   }))

@@ -16,7 +16,6 @@ export default class MainPage extends Component {
   }
 
   render() {
-    console.log('data', miniArticles)
     const { dispatch, miniArticles, visibilityFilter } = this.props
     const data = miniArticles.length ? miniArticles : []
     const isFetching = !!miniArticles.isFetching
