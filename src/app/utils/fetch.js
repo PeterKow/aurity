@@ -1,11 +1,11 @@
 import { unauthorised } from 'business/user/user.actions'
 import store from 'utils/store'
 
-export default function fetchService(url = throwIfMissing(), { credentials = 'same-origin', method = 'get', ...xxx }) {
+export default function fetchService(url = throwIfMissing(), { credentials = 'same-origin', method = 'get', ...other }) {
   return fetch(url, {
     credentials,
     method,
-    ...xxx,
+    ...other,
   })
     .then(checkErrors)
     .then(res => res.json())
