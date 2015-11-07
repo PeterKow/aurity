@@ -12,11 +12,14 @@ export function authWithTwitter() {
 export function logout() {
   return dispatch => {
     dispatch(twitterLogout())
+    auth.removeTwitterTokens()
+    history.pushState(null, '/login', '/login')
   }
 }
 
 export function unauthorised(data) {
   history.pushState(null, '/login', '/login')
+  auth.removeTwitterTokens()
   return { type: UNAUTHORISED, data }
 }
 
@@ -44,7 +47,6 @@ export function twitterSuccess(authData) {
       } = authData;
 
     dispatch(twitterLogin({ uid, tokenFirebase, tokenTwitter, name, id, profileImageURL }))
-    //firebaseUser.update({ uid, tokenFirebase, tokenTwitter, name, id, profileImageURL })
     console.log('location', window.location.pathname)
     if ( window.location.pathname !== '/') {
       console.log('goo')
