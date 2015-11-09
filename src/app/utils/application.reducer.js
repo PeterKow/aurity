@@ -1,4 +1,4 @@
-import * as storage from '../persistance/storage.js';
+import storage from 'persistence/storage.js';
 
 const initApplication = {
   locale: storage.get('locale') || 'en',

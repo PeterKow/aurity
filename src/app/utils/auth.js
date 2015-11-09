@@ -1,5 +1,5 @@
 import store from 'utils/store'
-import storage from 'utils/localStorage'
+import storage from 'persistence/storage'
 
 const auth = {
   getTwitterTokens: getTwitterTokens,
@@ -24,6 +24,7 @@ function getTwitterTokens() {
       token: storage.get('twitter.token'),
       secret: storage.get('twitter.secret'),
     }
+    console.log('tokens storage', authData)
   }
 
   return authData;

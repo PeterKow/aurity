@@ -52,7 +52,7 @@ var config = {
       pages: path.resolve(mainDir, 'pages'),
       containers: path.resolve(mainDir, 'containers'),
       business: path.resolve(mainDir, 'business'),
-      persistence: path.resolve(mainDir, 'persistance'),
+      persistence: path.resolve(mainDir, 'persistence'),
       utils: path.resolve(mainDir, 'utils')
     },
     extensions: ['', '.js', '.jsx']
