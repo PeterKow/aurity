@@ -4,7 +4,6 @@ require('font-awesome-webpack')
 import React, { PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import { Provider, connect } from 'react-redux'
-// import HeaderMenu from './containers/headerMenu/containers/headerMenu.container.jsx';
 // import { IntlProvider } from 'react-intl'
 import DevTools from './utils/devTools.js'
 import renderRoutes from './routes.js'

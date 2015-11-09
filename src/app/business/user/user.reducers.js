@@ -31,7 +31,6 @@ function createInitialState() {
 }
 
 function createUser(data) {
-
   const user = {
     ...data,
     fetchingAuth: false,

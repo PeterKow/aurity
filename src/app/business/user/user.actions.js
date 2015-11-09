@@ -1,7 +1,4 @@
-import { AUTH_TWITTER, TWITTER_LOGIN, TWITTER_FAILED, TWITTER_LOGOUT, UNAUTHORISED } from './user.actionTypes.js'
-import fetch from 'isomorphic-fetch'
-import * as storage from '../../persistance/storage.js'
-import history from 'utils/history'
+import { AUTH_TWITTER, TWITTER_LOGIN, TWITTER_FAILED, TWITTER_LOGOUT } from './user.actionTypes.js'
 
 export function authTwitter() {
   return { type: AUTH_TWITTER }

@@ -1,4 +1,4 @@
-import { authTwitter, twitterFailed, twitterLogin, twitterLogout } from './user.actions.js'
+import { authTwitter, twitterLogout } from './user.actions.js'
 import { LOGIN_SUCCESS, UNAUTHORISED } from './user.actionTypes'
 import history from 'utils/history.js'
 import auth from 'utils/auth'

@@ -12,7 +12,7 @@ export default function fetchService(url = throwIfMissing(), { credentials = 'sa
 }
 
 function throwIfMissing() {
-  throw new Error('Missing parameter');
+  throw new Error('Missing parameter')
 }
 
 function checkErrors(res) {
@@ -20,7 +20,6 @@ function checkErrors(res) {
     case 401:
       store.dispatch(unauthorised('Api call unauthorised'))
       throw new Error('Unauthorised');
-      break;
     default:
       return res
   }

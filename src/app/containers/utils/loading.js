@@ -10,14 +10,9 @@ export default class Loader extends Component {
   componentWillMount() {
     fetchService('/profile')
       .then(res => {
-        console.log('me ', res)
         store.dispatch(loginSuccess(res))
-        // todo change directory
-        // todo save to local storage
-        //history.replaceState(null, '/')
       })
-      .catch(res => {
-        console.log('me error', res)
+      .catch(() => {
         history.replaceState(null, '/login')
       })
   }

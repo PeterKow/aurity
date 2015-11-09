@@ -6,7 +6,6 @@ export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 export const FETCH_MINI_ARTICLES = 'FETCH_MINI_ARTICLES';
 export const FETCH_MINI_ARTICLES_FAILED = 'FETCH_MINI_ARTICLES_FAILED';
 export const FETCH_MINI_ARTICLES_SUCCESS = 'FETCH_MINI_ARTICLES_SUCCESS';
-export const NEW_MINI_ARTICLES = 'NEW_MINI_ARTICLES';
 
 /*
  * other constants
@@ -27,10 +26,6 @@ export function completeMiniArticle(id) {
 
 export function setVisibilityFilter(filter) {
   return { type: SET_VISIBILITY_FILTER, filter };
-}
-
-export function newMiniArticles(miniArticles) {
-  return { type: NEW_MINI_ARTICLES, miniArticles}
 }
 
 export function fetchMiniArticles() {

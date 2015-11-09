@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { authWithTwitter } from 'business/user/user.group.actions.js'
 
 const positionAbsolute = {
   position: 'absolute',
@@ -23,9 +22,6 @@ const logo = {
 
 class Login extends Component {
   render() {
-    // Todo: create proper button
-    const { dispatch } = this.props
-
     return (
       <div style={positionAbsolute}>
         <img src="/images/aurity_logo_v32_big.png" style={logo}/>

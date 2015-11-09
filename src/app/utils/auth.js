@@ -32,7 +32,6 @@ function getTwitterTokens() {
 function setTwitterTokens({ token, secret }) {
   storage.set('twitter.token', token)
   storage.set('twitter.secret', secret)
-  console.log('token storage', token, secret)
 }
 
 function removeTwitterTokens() {

@@ -26,7 +26,6 @@ export function startFetchMiniArticles() {
         dispatch(fetchMiniArticlesSuccess(data))
       })
       .catch(res => {
-        console.log('FAILED res ', res)
         dispatch(fetchMiniArticlesFailed(res))
       })
   }

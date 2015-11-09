@@ -1,6 +1,6 @@
 import React from 'react';
 
-// import { Router, DefaultRoute, Route, NotFoundRoute, Redirect } from 'react-router';
+// import { Router, DefaultRoute, Route, NotFoundRoute, Redirect } from 'react-router';replaceState
 import { Router, Route } from 'react-router';
 
 import Layout from './pages/main/layout.js'
@@ -8,14 +8,14 @@ import MainPage from './pages/main/mainPage.js'
 import Login from './pages/login/loginPage.js'
 import Loader from 'containers/utils/loading'
 
-function requireAuth(nextState, replaceState) {
+// function requireAuth(nextState, replaceState) {
  // TODO add new validation
-  //if (!auth.isLoggedIn()) {
+  // if (!auth.isLoggedIn()) {
   //  replaceState({nextPathname: nextState.location.pathname}, '/login')
-  //}
-}
+  // }
+// }
 
-function redirectHome(nextState, replaceState) {
+function redirectHome(replaceState) {
   replaceState({}, '/')
 }
 
