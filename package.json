@@ -10,7 +10,8 @@
     "start_web": "NODE_ENV=development DEVTOOLS=true webpack-dev-server --hot --inline --content-base public",
     "start": "NODE_ENV=development DEVTOOLS=true node ./server.js",
     "start_heroku": "NODE_ENV=production DEVTOOLS=true node ./server.js",
-    "deploy": "NODE_ENV=production DEVTOOLS=true webpack -p --config webpack.production.config.js",
+    "deploy_verbose": "NODE_ENV=production DEVTOOLS=true webpack -p --config webpack.production.config.js",
+    "deploy": "NODE_ENV=production DEVTOOLS=true webpack --p --config webpack.production.config.js --bail",
     "test": "mocha \"src/tests\" --compilers js:babel-core/register --recursive",
     "postinstall": "npm run deploy"
   },
