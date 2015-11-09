@@ -33,25 +33,4 @@ export function loginSuccess(response) {
   }
 }
 
-export function twitterSuccess(authData) {
-  return dispatch => {
-    const {
-      token: tokenFirebase,
-      uid,
-      twitter: {
-        accessToken: tokenTwitter,
-        displayName: name,
-        id,
-        profileImageURL,
-        },
-      } = authData;
-
-    dispatch(twitterLogin({ uid, tokenFirebase, tokenTwitter, name, id, profileImageURL }))
-    console.log('location', window.location.pathname)
-    if ( window.location.pathname !== '/') {
-      console.log('goo')
-      history.replaceState(null, '/')
-    }
-  }
-}
 
