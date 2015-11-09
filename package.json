@@ -10,7 +10,7 @@
     "start": "NODE_ENV=development DEVTOOLS=true node ./server.js",
     "start_heroku": "NODE_ENV=production DEVTOOLS=true node ./server.js",
     "deploy": "NODE_ENV=production DEVTOOLS=true webpack -p --config webpack.production.config.js",
-    "test": "mocha \"src/test\" --compilers js:babel-core/register --recursive",
+    "test": "mocha \"src/tests\" --compilers js:babel-core/register --recursive",
     "postinstall": "npm run deploy"
   },
   "repository": {
