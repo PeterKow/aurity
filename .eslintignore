@@ -3,3 +3,5 @@
 ./src/server/**/*.js
 ./webpack.config.js
 ./webpack.production.config.js
+./webpackServer.js
+./server.js

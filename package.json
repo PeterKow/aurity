@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "lint": "eslint .; exit 0",
+    "lint": "eslint .",
+    "lint_no_except": "eslint .; exit 0",
     "babel-node": "babel-node --stage 0 ",
     "start_web": "NODE_ENV=development DEVTOOLS=true webpack-dev-server --hot --inline --content-base public",
     "start": "NODE_ENV=development DEVTOOLS=true node ./server.js",
