@@ -57,7 +57,11 @@ body{
 }
 
 .login-page-wrap {
-	padding:20% 2%;
+	position:absolute;
+	left:0;
+	width:100%;
+	top:50%;
+	transform:translateY(-150px);
 	text-align:center;
 }
 
