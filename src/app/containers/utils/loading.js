@@ -24,7 +24,7 @@ export default class Loader extends Component {
 
   render() {
     return (
-      <div style={{ margin: '0 auto', width: 100, padding: '50px 0 50px'}}>
+      <div className="preloader-wrap">
         <i style={{ fontSize: 70}} className="fa fa-spinner fa-spin"></i>
         <h4>Loading...</h4>
       </div>)
