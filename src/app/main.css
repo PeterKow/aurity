@@ -1,6 +1,6 @@
 html, body
 {
-  background: url(http://planerwnetrz.pl/a/main_bg.jpg) no-repeat center center fixed; 
+  background: url(/images/main_bg.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
