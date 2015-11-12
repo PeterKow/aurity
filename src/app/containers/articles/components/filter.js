@@ -6,12 +6,14 @@ import React, { Component, PropTypes } from 'react';
 export default class Filter extends Component {
   renderFilter(filter, name) {
     if (filter === this.props.filter) {
-      return name;
+      return (
+        <span className='active filter'>{name}</span>
+      )
     }
 
     return (
-      <a href="#"
-         style={{color: 'black'}}
+      <a className="filter" 
+         href="#"
          onClick={event => { event.preventDefault(); this.props.onFilterChange(filter); }}>
         {name}
       </a>
@@ -20,15 +22,11 @@ export default class Filter extends Component {
 
   render() {
     return (
-      <div style={{ padding: 5}}>
+      <div className="filters-wrap">
         Show:
-        {' '}
-        {this.renderFilter('SHOW_ALL', 'All')}
-        {', '}
-        {this.renderFilter('SHOW_COMPLETED', 'Completed')}
-        {', '}
+        {this.renderFilter('SHOW_ALL', 'All')} |
+        {this.renderFilter('SHOW_COMPLETED', 'Completed')} |
         {this.renderFilter('SHOW_ACTIVE', 'Active')}
-        .
       </div>
     );
   }

@@ -1,4 +1,5 @@
 ./node_modules/**/*.js
-./public/build/**/*.js
+./src/public/build/**/*.js
+./src/server/**/*.js
 ./webpack.config.js
 ./webpack.production.config.js
