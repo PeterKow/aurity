@@ -3,6 +3,9 @@ import { Link } from 'react-router'
 import store from 'utils/store.js'
 import { logout } from 'business/user/user.group.actions.js'
 
+
+import { startFetchMiniArticles } from 'containers/articles/articleGroup.actions.js'
+
 export default class Navbar extends Component {
   render() {
     return (<nav className="navbar navbar-default">
@@ -19,9 +22,14 @@ export default class Navbar extends Component {
         <div id="navbar" className="navbar-collapse collapse">
           <ul className="nav navbar-nav">
             <li className="active"><a href="/">Home</a></li>
-            <li><a href="/search">Search</a></li>
-            <li><Link to="/login">Link</Link></li>
-            <li onClick={()=> store.dispatch(logout())}><a href="">Logout</a></li>
+            <li style={{cursor: 'pointer' }}
+                onClick={() => store.dispatch(startFetchMiniArticles())}><a>New search</a>
+            </li>
+            <li><Link to="/login">Login</Link></li>
+            <li style={{cursor: 'pointer' }}
+                onClick={() => store.dispatch(logout())}><a>Logout</a>
+            </li>
+            <li><a href="/auth/twitter">Login direct</a></li>
             <li className="dropdown">
               <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
               <ul className="dropdown-menu">

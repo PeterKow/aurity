@@ -21,6 +21,7 @@ export default class MiniArticleList extends Component {
 MiniArticleList.propTypes = {
   onMiniArticleClick: PropTypes.func.isRequired,
   miniarticles: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
   }).isRequired).isRequired,

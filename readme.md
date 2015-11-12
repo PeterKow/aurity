@@ -1,6 +1,7 @@
 # Aurity twitter search
 
-# redux-react-babel-webpack
+[![Circle CI](https://circleci.com/gh/PeterKow/aurity/tree/master.svg?style=svg)](https://circleci.com/gh/PeterKow/aurity/tree/master)
+
 Example implementation of Redux + Immutable + DevTools + React-Router with React 0.14 packed with webpack ES6. Example oAtuh login for Twitter with passport. Example tests with Mocha, Chai.  App is more a playground to tryout new things and still under development.
 
 On the backend Node with Express, MongoDB and Passport oAuth.

@@ -9,5 +9,9 @@
     "semi": 0,
     "no-use-before-define": [2, "nofunc"],
     "indent": [2, 2, {"SwitchCase": 1}],
+  },
+  "env": {
+    "node": true,
+    "mocha": true,
   }
 }

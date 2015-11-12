@@ -7,7 +7,7 @@ var mainPath = path.resolve(mainDir, 'main.js');
 var config = {
   entry: path.resolve(__dirname, 'src/app/main.js'),
   output: {
-    path: path.resolve(__dirname, 'public'),
+    path: path.resolve(__dirname, 'src', 'public'),
     filename: '/build/bundle.js'
   },
   module: {
@@ -42,7 +42,7 @@ var config = {
     new Webpack.NoErrorsPlugin(),
     new Webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('development'),
+        'NODE_ENV': JSON.stringify('production'),
         'DEVTOOLS': process.env.DEVTOOLS === 'true' ? true : false
       },
     })],
@@ -52,7 +52,7 @@ var config = {
       pages: path.resolve(mainDir, 'pages'),
       containers: path.resolve(mainDir, 'containers'),
       business: path.resolve(mainDir, 'business'),
-      persistence: path.resolve(mainDir, 'persistance'),
+      persistence: path.resolve(mainDir, 'persistence'),
       utils: path.resolve(mainDir, 'utils')
     },
     extensions: ['', '.js', '.jsx']
