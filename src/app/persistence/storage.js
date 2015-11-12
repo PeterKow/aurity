@@ -35,26 +35,23 @@ function clearAll() {
 }
 
 function init() {
-  const localOk = test(window.localStorage)
-  const sessionOk = test(window.sessionStorage)
-  console.log('window.localStorage', localOk)
-  console.log('window.sessionStorage', sessionOk)
+  const localOk = testBrowser(window.localStorage)
+  const sessionOk = testBrowser(window.sessionStorage)
   storageObject = window.localStorage ? window.localStorage : window.sessionStorage
   if (localOk) {
     storageObject = window.localStorage
-  } else if(sessionOk){
-    storageObject =window.sessionStorage
+  } else if (sessionOk) {
+    storageObject = window.sessionStorage
   } else {
     storageObject = db
     console.log('db', storageObject)
   }
 }
 
-function test(testStorage) {
+function testBrowser(testStorage) {
   try {
     testStorage.setItem('test', true)
-  } catch (e) {
-    console.log('failed!!', e)
+  } catch (err) {
     return false
   }
   return true
