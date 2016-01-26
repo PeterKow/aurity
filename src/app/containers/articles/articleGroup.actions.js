@@ -18,7 +18,7 @@ export function startFetchMiniArticles() {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(twitterTokens),
+      body: JSON.stringify({ ...twitterTokens, minRetweets: 10, minFaves: 10 }),
     })
       .then(res => {
         const data = res.message.statuses.map(mapTwitterResponse)
@@ -32,10 +32,18 @@ export function startFetchMiniArticles() {
 }
 
 function mapTwitterResponse(data) {
+  console.log('data', data.entities.media)
   return {
     id: data.id,
     text: data.text,
     completed: false,
-    image: data.user.profile_image_url_https,
+    profileImage: data.user.profile_image_url_https,
+    favoriteCount: data.favorite_count,
+    retweetCount: data.retweet_count,
+    image: getMedia( data.entities.media),
   }
+}
+
+function getMedia(media = []) {
+  return media[0] ? media[0].media_url_https : ''
 }
