@@ -32,18 +32,27 @@ export function startFetchMiniArticles() {
 }
 
 function mapTwitterResponse(data) {
-  console.log('data', data.entities.media)
+  console.log('data', data.entities)
   return {
     id: data.id,
-    text: data.text,
+    text: expandUrls(data.text, data.entities.urls),
     completed: false,
     profileImage: data.user.profile_image_url_https,
     favoriteCount: data.favorite_count,
     retweetCount: data.retweet_count,
     image: getMedia( data.entities.media),
+    entities: data.entities,
   }
 }
 
 function getMedia(media = []) {
   return media[0] ? media[0].media_url_https : ''
+}
+
+function expandUrls(text, urls) {
+  let newText = text
+  urls.forEach(url => {
+    newText = newText.replace(url.url, url.expanded_url)
+  })
+  return newText
 }
