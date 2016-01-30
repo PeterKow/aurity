@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import Image from 'containers/utils/image'
-var Linkify = require('react-linkify');
+import Linkify from 'react-linkify'
 import { DragSource } from 'react-dnd';
 
 const imgStyle = {
@@ -43,7 +43,7 @@ export default class MiniArticle extends Component {
         <div style={{padding: '9px 12px'}}>
           <div style={{ marginLeft: 58 }}>
             <img style={imgStyle} src={this.props.profileImage}></img>
-            <Linkify>{this.props.text}</Linkify><br/>
+            <Linkify target="_blank">{this.props.text}</Linkify><br/>
             Favorite: <b>{this.props.favoriteCount}</b> Retweet: <b>{this.props.retweetCount}</b>
             { getImage(this.props.image) }
           </div>
