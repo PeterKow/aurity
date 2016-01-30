@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import Filter from 'containers/articles/components/filter.js';
 import Articles from 'containers/articles/containers/articles.container.js'
 import { setVisibilityFilter, VisibilityFilters, }

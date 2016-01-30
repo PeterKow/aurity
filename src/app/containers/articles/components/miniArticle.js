@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import Image from 'containers/utils/image'
 var Linkify = require('react-linkify');
+import { DragSource } from 'react-dnd';
 
 const imgStyle = {
   borderRadius: '30px',
@@ -9,6 +10,22 @@ const imgStyle = {
   marginTop: '0px',
 };
 
+export const ItemTypes = {
+  KNIGHT: 'knight',
+};
+
+const boxSource = {
+  beginDrag(props) {
+    return {
+      name: props.name,
+    }
+  },
+}
+
+@DragSource(ItemTypes.KNIGHT, boxSource, (connect, monitor) => ({
+  connectDragSource: connect.dragSource(),
+  isDragging: monitor.isDragging(),
+}))
 export default class MiniArticle extends Component {
   render() {
     function getImage(image) {
@@ -18,8 +35,8 @@ export default class MiniArticle extends Component {
         </div>
       ) : ''
     }
-
-    return (
+    const { connectDragSource } = this.props
+    return connectDragSource(
       <li
         onClick={this.props.onClick}
         style={styles(this.props.completed)}>
@@ -52,5 +69,6 @@ MiniArticle.propTypes = {
   image: PropTypes.string,
   favoriteCount: PropTypes.number.isRequired,
   retweetCount: PropTypes.number.isRequired,
+  connectDragSource: PropTypes.func,
 }
 
