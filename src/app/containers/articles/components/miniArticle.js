@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import Image from 'containers/utils/image'
 import Linkify from 'react-linkify'
 import { DragSource } from 'react-dnd';
+import Preview from './preview'
 
 const imgStyle = {
   borderRadius: '30px',
@@ -35,7 +36,7 @@ export default class MiniArticle extends Component {
         </div>
       ) : ''
     }
-    const { connectDragSource } = this.props
+    const { connectDragSource, quotedStatus } = this.props
     return connectDragSource(
       <li
         onClick={this.props.onClick}
@@ -44,6 +45,7 @@ export default class MiniArticle extends Component {
           <div style={{ marginLeft: 58 }}>
             <img style={imgStyle} src={this.props.profileImage}></img>
             <Linkify target="_blank">{this.props.text}</Linkify><br/>
+            { quotedStatus ? <Preview content={ quotedStatus }/> : '' }
             Favorite: <b>{this.props.favoriteCount}</b> Retweet: <b>{this.props.retweetCount}</b>
             { getImage(this.props.image) }
           </div>
@@ -69,6 +71,7 @@ MiniArticle.propTypes = {
   image: PropTypes.string,
   favoriteCount: PropTypes.number.isRequired,
   retweetCount: PropTypes.number.isRequired,
+  quotedStatus: PropTypes.object,
   connectDragSource: PropTypes.func,
 }
 

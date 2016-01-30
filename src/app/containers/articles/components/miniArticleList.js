@@ -26,5 +26,6 @@ MiniArticleList.propTypes = {
     completed: PropTypes.bool.isRequired,
     favoriteCount: PropTypes.number.isRequired,
     retweetCount: PropTypes.number.isRequired,
+    quotedStatus: PropTypes.object,
   }).isRequired).isRequired,
 }

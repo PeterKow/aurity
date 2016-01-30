@@ -42,6 +42,7 @@ function mapTwitterResponse(data) {
     retweetCount: data.retweet_count,
     image: getMedia( data.entities.media),
     entities: data.entities,
+    quotedStatus: data.quoted_status,
   }
 }
 
