@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router'
 import store from 'utils/store.js'
 import { logout } from 'business/user/user.group.actions.js'
+import { syncTweets } from 'business/firebase/firebase'
 
 
 import { startFetchMiniArticles } from 'containers/articles/articleGroup.actions.js'
@@ -24,6 +25,10 @@ export default class Navbar extends Component {
             <li className="active"><a href="/">Home</a></li>
             <li style={{cursor: 'pointer' }}
                 onClick={() => store.dispatch(startFetchMiniArticles())}><a>New search</a>
+            </li>
+            <li style={{cursor: 'pointer' }}
+                onClick={() => syncTweets(store.getState().miniarticles) }>
+              Sync
             </li>
             <li><Link to="/login">Login</Link></li>
             <li style={{cursor: 'pointer' }}

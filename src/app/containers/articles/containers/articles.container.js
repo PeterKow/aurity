@@ -34,7 +34,7 @@ export default class Articles extends Component {
     return (
         <MiniArticleList
           miniarticles={miniArticles}
-          onMiniArticleClick={ this.handleClick } />
+          onMiniArticleClick={index =>dispatch(completeMiniArticle(index))} />
     );
 
     function loader() {
@@ -64,3 +64,4 @@ export default connect(select)(Articles);
 
 
 //onMiniArticleClick={index =>dispatch(completeMiniArticle(index))} />
+//onMiniArticleClick={ this.handleClick } />
