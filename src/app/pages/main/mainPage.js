@@ -2,16 +2,30 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Filter from 'containers/articles/components/filter.js';
 import Articles from 'containers/articles/containers/articles.container.js'
-import { setVisibilityFilter, VisibilityFilters, }
-  from 'containers/articles/article.actions.js'
+import { setVisibilityFilter, VisibilityFilters, } from 'containers/articles/article.actions.js'
 import { startFetchMiniArticles } from 'containers/articles/articleGroup.actions.js'
+
+import Firebase from 'firebase'
+var myDataRef = new Firebase('https://fiery-inferno-5861.firebaseio.com/tweets');
 
 export default class MainPage extends Component {
 
   componentWillMount() {
     const { dispatch } = this.props
 
-    dispatch(startFetchMiniArticles())
+    //dispatch(startFetchMiniArticles())
+
+    myDataRef.on("value", function(snapshot) {
+      const newData = []
+      const data =  snapshot.val()
+      for( var tweet in data ) {
+       newData.push(data[tweet])
+      }
+      console.log('------------', newData);
+      dispatch({ type: 'FETCH_MINI_ARTICLES_SUCCESS', data: newData })
+    }, function (errorObject) {
+      console.log("The read failed: " + errorObject.code);
+    });
   }
 
   render() {

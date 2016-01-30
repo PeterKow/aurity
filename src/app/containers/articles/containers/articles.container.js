@@ -5,8 +5,23 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { completeMiniArticle } from '../article.actions.js';
 import MiniArticleList from '../components/miniArticleList.js';
+import Firebase from 'firebase'
+var myDataRef = new Firebase('https://fiery-inferno-5861.firebaseio.com/tweets');
 
 export default class Articles extends Component {
+
+  handleClick = (index) => {
+    const { miniArticles } = this.props;
+    const article = miniArticles.filter(article => article.id_str === index)[0]
+
+    console.log('index', article)
+    if (!article.quotedStatus) {
+      delete article.quotedStatus
+    }
+    const data = {}
+    data[article.id_str] = article
+    myDataRef.update(data)
+  }
 
   render() {
     // Injected by connect() call:
@@ -19,7 +34,7 @@ export default class Articles extends Component {
     return (
         <MiniArticleList
           miniarticles={miniArticles}
-          onMiniArticleClick={index =>dispatch(completeMiniArticle(index))} />
+          onMiniArticleClick={ this.handleClick } />
     );
 
     function loader() {
@@ -46,3 +61,6 @@ function select() {
 
 // Wrap the component to inject dispatch and state into it
 export default connect(select)(Articles);
+
+
+//onMiniArticleClick={index =>dispatch(completeMiniArticle(index))} />

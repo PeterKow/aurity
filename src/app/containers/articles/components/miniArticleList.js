@@ -11,7 +11,7 @@ export default class MiniArticleList extends Component {
           {this.props.miniarticles.map((miniArticle, index) =>
               <MiniArticle {...miniArticle}
                 key={index}
-                onClick={() => this.props.onMiniArticleClick(miniArticle.id)} />
+                onClick={() => this.props.onMiniArticleClick(miniArticle.id_str)} />
           )}
       </ul>
     );

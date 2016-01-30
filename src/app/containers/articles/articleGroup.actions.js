@@ -32,9 +32,10 @@ export function startFetchMiniArticles() {
 }
 
 function mapTwitterResponse(data) {
-  console.log('data', data.entities)
+  //console.log('data', data.entities)
   return {
     id: data.id,
+    id_str: data.id_str,
     text: expandUrls(data.text, data.entities.urls),
     completed: false,
     profileImage: data.user.profile_image_url_https,
