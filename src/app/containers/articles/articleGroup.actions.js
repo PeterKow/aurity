@@ -44,6 +44,7 @@ function mapTwitterResponse(data) {
     image: getMedia( data.entities.media),
     entities: data.entities,
     quotedStatus: data.quoted_status,
+    user: data.user
   }
 }
 

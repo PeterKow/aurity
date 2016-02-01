@@ -32,9 +32,12 @@ export default class Articles extends Component {
     }
 
     return (
+      <div>
+        <b>Total tweets: { miniArticles.length }</b>
         <MiniArticleList
           miniarticles={miniArticles}
           onMiniArticleClick={index =>dispatch(completeMiniArticle(index))} />
+      </div>
     );
 
     function loader() {

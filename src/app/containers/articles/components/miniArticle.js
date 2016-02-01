@@ -37,13 +37,20 @@ export default class MiniArticle extends Component {
       ) : ''
     }
     const { connectDragSource, quotedStatus } = this.props
+    const { id_str, user, onClick } = this.props
     return connectDragSource(
       <li
-        onClick={this.props.onClick}
         style={styles(this.props.completed)}>
         <div style={{padding: '9px 12px'}}>
           <div style={{ marginLeft: 58 }}>
             <img style={imgStyle} src={this.props.profileImage}></img>
+            <div>
+              { user.screenName }
+              <a target="_blank" href={`https://twitter.com/${user.screenName}/status/${ id_str }`}>Twitter</a>
+              <span style={{ borderRadius: 5, padding: 4, backgroundColor: 'greenyellow'}} onClick={ onClick }>
+                DONE
+              </span>
+            </div>
             <Linkify target="_blank">{this.props.text}</Linkify><br/>
             { quotedStatus ? <Preview content={ quotedStatus }/> : '' }
             Favorite: <b>{this.props.favoriteCount}</b> Retweet: <b>{this.props.retweetCount}</b>
@@ -61,6 +68,12 @@ function styles(completed) {
     cursor: completed ? 'default' : 'pointer',
     listStyleType: 'none',
   };
+}
+
+MiniArticle.defaultProps = {
+  user: {
+    screenName: 'dan_abramov',
+  },
 }
 
 MiniArticle.propTypes = {
