@@ -18,7 +18,7 @@ module.exports = function(app){
       // screen_name: "rsarver"
       //q: "%23freebandnames&since_id=24012619984051000&max_id=250126199840518145&result_type=mixed&count=4"
       //q: "job OR hire OR hiring OR looking OR apply AND react"
-      q: "from:dan_abramov min_retweets:" + req.body.minRetweets + " OR min_faves:" + req.body.minFaves
+      q: req.body.query
       //q: "@peter_kow"
       //q: req.params
     };

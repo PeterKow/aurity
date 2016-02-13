@@ -7,27 +7,23 @@ export function startFetchMiniArticles() {
   return dispatch => {
     dispatch(fetchMiniArticles())
 
-    const twitterTokens = auth.getTwitterTokens()
-    if (!twitterTokens) {
-      return dispatch(unauthorised('notTokensOnTheClient'))
-    }
+    //const from:dan_abramov
+    const minRetweets = 10
+    const minFaves = 10
+    const query = "from:dan_abramov min_retweets:" + minRetweets + " OR min_faves:" + minFaves
+    return sendRequest(dispatch, query)
+  }
+}
 
-    return fetchService('/search/twitter', {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ ...twitterTokens, minRetweets: 10, minFaves: 10 }),
-    })
-      .then(res => {
-        const data = res.message.statuses.map(mapTwitterResponse)
+export function startFetchMiniArticlesReply() {
+  return dispatch => {
+    dispatch(fetchMiniArticles())
 
-        dispatch(fetchMiniArticlesSuccess(data))
-      })
-      .catch(res => {
-        dispatch(fetchMiniArticlesFailed(res))
-      })
+    //const from:dan_abramov
+    const minRetweets = 10
+    const minFaves = 10
+    const query = "from:dan_abramov min_retweets:" + minRetweets + " OR min_faves:" + minFaves
+    return sendRequest(dispatch, query)
   }
 }
 
@@ -44,7 +40,7 @@ function mapTwitterResponse(data) {
     image: getMedia( data.entities.media),
     entities: data.entities,
     quotedStatus: data.quoted_status,
-    user: data.user
+    user: data.user,
   }
 }
 
@@ -58,4 +54,28 @@ function expandUrls(text, urls) {
     newText = newText.replace(url.url, url.expanded_url)
   })
   return newText
+}
+
+function sendRequest(dispatch, query) {
+  const twitterTokens = auth.getTwitterTokens()
+  if (!twitterTokens) {
+    return dispatch(unauthorised('notTokensOnTheClient'))
+  }
+
+  return fetchService('/search/twitter', {
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ ...twitterTokens, query }),
+  })
+    .then(res => {
+      const data = res.message.statuses.map(mapTwitterResponse)
+
+      dispatch(fetchMiniArticlesSuccess(data))
+    })
+    .catch(res => {
+      dispatch(fetchMiniArticlesFailed(res))
+    })
 }
