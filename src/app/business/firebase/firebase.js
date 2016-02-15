@@ -11,9 +11,12 @@ function syncTweet(article) {
 }
 
 function syncTweets(tweets) {
-  console.log('rt', tweets)
+  console.log('rt', tweets, window._userId)
+
+  //var myDataRefUser = new Firebase('https://fiery-inferno-5861.firebaseio.com/1627149078/' + window._userId );
   tweets.forEach(tweet => {
     myDataRef.update(createFireArticle(tweet))
+    //myDataRefUser.update(createFireArticle(tweet))
   })
 }
 

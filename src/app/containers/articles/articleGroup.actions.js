@@ -3,14 +3,15 @@ import { unauthorised } from 'business/user/user.group.actions'
 import fetchService from 'utils/fetch'
 import auth from 'utils/auth'
 
-export function startFetchMiniArticles() {
+export function startFetchMiniArticles(payload = {}) {
   return dispatch => {
-    dispatch(fetchMiniArticles())
-
+    dispatch(fetchMiniArticles(payload))
     //const from:dan_abramov
+    const user = payload.search ? payload.search : 'dan_abramov'
     const minRetweets = 10
     const minFaves = 10
-    const query = "from:dan_abramov min_retweets:" + minRetweets + " OR min_faves:" + minFaves
+    const query = "from:" + user + " min_retweets:" + minRetweets + " OR min_faves:" + minFaves
+    console.log('query', query)
     return sendRequest(dispatch, query)
   }
 }
@@ -73,6 +74,8 @@ function sendRequest(dispatch, query) {
     .then(res => {
       const data = res.message.statuses.map(mapTwitterResponse)
 
+      //console.log('daaaa', data[0].user.id)
+      window._userId =  data[0].user.id
       dispatch(fetchMiniArticlesSuccess(data))
     })
     .catch(res => {

@@ -4,23 +4,33 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { completeMiniArticle } from '../article.actions.js';
+import { startFetchMiniArticles } from '../articleGroup.actions';
 import MiniArticleList from '../components/miniArticleList.js';
 import Firebase from 'firebase'
 var myDataRef = new Firebase('https://fiery-inferno-5861.firebaseio.com/tweets');
 
+
 export default class Articles extends Component {
+
+  state = {
+    inputValue: '',
+  }
 
   handleClick = (index) => {
     const { miniArticles } = this.props;
     const article = miniArticles.filter(article => article.id_str === index)[0]
 
-    console.log('index', article)
     if (!article.quotedStatus) {
       delete article.quotedStatus
     }
     const data = {}
     data[article.id_str] = article
     myDataRef.update(data)
+  }
+
+  onInputChange(e) {
+    console.log('eee', e.target.value)
+    this.setState({ inputValue: e.target.value})
   }
 
   render() {
@@ -33,6 +43,10 @@ export default class Articles extends Component {
 
     return (
       <div>
+        <div>
+          <input type="text" onChange={this.onInputChange.bind(this)}/>
+          <button onClick={ () => dispatch(startFetchMiniArticles({ search: this.state.inputValue }))}>Search</button>
+        </div>
         <b>Total tweets: { miniArticles.length }</b>
         <MiniArticleList
           miniarticles={miniArticles}
