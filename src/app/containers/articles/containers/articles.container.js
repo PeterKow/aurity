@@ -9,6 +9,8 @@ import MiniArticleList from '../components/miniArticleList.js';
 import Firebase from 'firebase'
 var myDataRef = new Firebase('https://fiery-inferno-5861.firebaseio.com/tweets');
 
+import { syncTweets, readTweets } from 'business/firebase/firebase'
+import store from 'utils/store.js'
 
 export default class Articles extends Component {
 
@@ -46,6 +48,12 @@ export default class Articles extends Component {
         <div>
           <input type="text" onChange={this.onInputChange.bind(this)}/>
           <button onClick={ () => dispatch(startFetchMiniArticles({ search: this.state.inputValue }))}>Search</button>
+        </div>
+        <div>
+          <span><b>{ window._userId}   </b></span>
+          <button onClick={() => readTweets(dispatch) }>Read</button>
+          <button onClick={() => syncTweets(store.getState().miniarticles)}>Sync</button>
+          <button style={{ marginLeft: '50%' }}onClick={() => syncTweets(store.getState().miniarticles) }>Add new!!</button>
         </div>
         <b>Total tweets: { miniArticles.length }</b>
         <MiniArticleList

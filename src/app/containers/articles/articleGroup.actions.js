@@ -75,7 +75,6 @@ function sendRequest(dispatch, query) {
       const data = res.message.statuses.map(mapTwitterResponse)
 
       //console.log('daaaa', data[0].user.id)
-      window._userId =  data[0].user.id
       dispatch(fetchMiniArticlesSuccess(data))
     })
     .catch(res => {
