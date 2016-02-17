@@ -8,9 +8,15 @@ import { startFetchMiniArticles } from '../articleGroup.actions';
 import MiniArticleList from '../components/miniArticleList.js';
 import Firebase from 'firebase'
 var myDataRef = new Firebase('https://fiery-inferno-5861.firebaseio.com/tweets');
+//import { Autocomplete } from 'react-toolbox/lib/button';
+import { getStates, matchStateToTerm, sortStates, styles } from './autocompleteUtils'
+import Autocomplete from 'react-autocomplete'
 
 import { syncTweets, readTweets } from 'business/firebase/firebase'
 import store from 'utils/store.js'
+import { getFollowers } from './followers'
+
+
 
 export default class Articles extends Component {
 
@@ -29,6 +35,11 @@ export default class Articles extends Component {
     data[article.id_str] = article
     myDataRef.update(data)
   }
+
+  handleChange = (value) => {
+    this.setState({value: value});
+  };
+
 
   onInputChange(e) {
     console.log('eee', e.target.value)
