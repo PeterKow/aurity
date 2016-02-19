@@ -28,9 +28,9 @@ export function setVisibilityFilter(filter) {
   return { type: SET_VISIBILITY_FILTER, filter };
 }
 
-export function fetchMiniArticles() {
+export function fetchMiniArticles(payload) {
   window._source = 'twitter'
-  return { type: FETCH_MINI_ARTICLES}
+  return { type: FETCH_MINI_ARTICLES, payload}
 }
 
 export function fetchMiniArticlesSuccess(data) {

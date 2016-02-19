@@ -9,7 +9,7 @@ import MiniArticleList from '../components/miniArticleList.js';
 //import { getStates, matchStateToTerm, sortStates, styles } from './autocompleteUtils'
 //import Autocomplete from 'react-autocomplete'
 
-import { syncTweets, readTweets } from 'business/firebase/firebase'
+import { syncTweets, readTweets, syncUsers } from 'business/firebase/firebase'
 import store from 'utils/store.js'
 import { getFollowers } from './followers'
 
@@ -17,6 +17,7 @@ export default class Articles extends Component {
 
   state = {
     inputValue: '',
+    selectValue: ''
   }
 
   handleChange = (value) => {
@@ -25,14 +26,15 @@ export default class Articles extends Component {
 
 
   onInputChange(e) {
-    console.log('eee', e.target.value)
     this.setState({ inputValue: e.target.value})
+  }
+  onSelectChange(e) {
+    this.setState({ selectValue: e.target.value})
   }
 
   render() {
     // Injected by connect() call:
-    const { dispatch, miniArticles, isFetching } = this.props;
-
+    const { dispatch, miniArticles, isFetching, likedUserList } = this.props;
     if (isFetching) {
       return loader()
     }
@@ -44,16 +46,25 @@ export default class Articles extends Component {
 
     return (
       <div>
-        <div>
+        <div style={{ margin: '10px 0' }}>
           <input type="text" onChange={this.onInputChange.bind(this)}/>
           <button onClick={ () => dispatch(startFetchMiniArticles({ search: this.state.inputValue }))}>Search</button>
         </div>
+        <div style={{ margin: '10px 0' }}>
+          <button onClick={ () => dispatch(startFetchMiniArticles({ search: this.state.selectValue }))}>Search - { this.state.selectValue }</button>
+          <select id="likedUserList" onChange={this.onSelectChange.bind(this)}>
+            { likedUserList.map(user => <option value={ user.screeName }>{ user.screeName }</option>)}
+          </select>
+        </div>
         <div>
           { getSource() }
-          <span><b>  &nbsp;{ window._userId}  &nbsp; </b></span>
+          <span><b>  &nbsp;{ window._userId}  &nbsp;{ window._screenName}  &nbsp; </b></span>
           <button onClick={() => readTweets(dispatch) }>Read</button>
           <button onClick={() => syncTweets(store.getState().miniarticles)}>Sync</button>
-          <button style={{ marginLeft: '50%' }}onClick={() => syncTweets(store.getState().miniarticles) }>Add new!!</button>
+          <div style={{ marginLeft: '50%' }}>
+            <button onClick={() => syncUsers() }>Save new user</button>
+            <button onClick={() => syncTweets(store.getState().miniarticles) }>Add new!!</button>
+          </div>
         </div>
         <b>Total tweets: { miniArticles.length }</b>
         <MiniArticleList

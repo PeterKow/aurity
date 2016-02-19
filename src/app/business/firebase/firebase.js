@@ -1,7 +1,10 @@
 import Firebase from 'firebase'
 var myDataRef = new Firebase('https://fiery-inferno-5861.firebaseio.com/tweets');
 import store from 'utils/store'
+import { likedUsersList } from 'business/user/user.actions'
 
+export { readUsers }
+export { syncUsers }
 export { syncTweets }
 export { syncTweet }
 export { initSync }
@@ -11,9 +14,28 @@ function syncTweet(article) {
   myDataRef.update(createFireArticle(article))
 }
 
-function syncTweets(tweets) {
-  //console.log('rt', tweets, window._userId)
+function syncUsers() {
+  const myDataRefUserLike = new Firebase('https://fiery-inferno-5861.firebaseio.com/1627149078/likedUsers/' + window._userId );
+  console.log('save user', { userId: window._userId, screeName: window._screenName})
+  myDataRefUserLike.update({ userId: window._userId, screeName: window._screenName})
+}
 
+function readUsers(dispatch) {
+  const myDataRefUserLike = new Firebase('https://fiery-inferno-5861.firebaseio.com/1627149078/likedUsers' );
+  myDataRefUserLike.orderByKey().on('value', function(snapshot) {
+    const newData = []
+    const data =  snapshot.val()
+    for (var user in data ) {
+      newData.unshift(data[user])
+    }
+    //console.log('------------ users', newData);
+    dispatch(likedUsersList(newData))
+  }, function (errorObject) {
+    console.log("The read user failed: " + errorObject.code);
+  });
+}
+
+function syncTweets(tweets) {
   const myDataRefUser = new Firebase('https://fiery-inferno-5861.firebaseio.com/1627149078/' + window._userId );
   tweets.forEach(tweet => {
     //myDataRef.update(createFireArticle(tweet))
@@ -30,7 +52,7 @@ function readTweets(dispatch) {
     for( var tweet in data ) {
       newData.unshift(data[tweet])
     }
-    console.log('------------', newData);
+    //console.log('------------', newData);
     dispatch({ type: 'FETCH_MINI_ARTICLES_SUCCESS', data: newData })
   }, function (errorObject) {
     console.log("The read failed: " + errorObject.code);

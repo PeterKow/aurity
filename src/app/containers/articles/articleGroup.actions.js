@@ -4,6 +4,7 @@ import fetchService from 'utils/fetch'
 import auth from 'utils/auth'
 
 export function startFetchMiniArticles(payload = {}) {
+
   return dispatch => {
     dispatch(fetchMiniArticles(payload))
     //const from:dan_abramov

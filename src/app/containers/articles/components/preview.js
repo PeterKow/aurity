@@ -2,7 +2,7 @@ import React from 'react'
 import Linkify from 'react-linkify'
 
 export default function Preview(data) {
-  console.log('data', data)
+  //console.log('data', data)
   return (
     <div style={ styles }>
       <Linkify>{ data.content.text }</Linkify>

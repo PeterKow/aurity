@@ -4,11 +4,14 @@ var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 var buildPath = path.resolve(__dirname, 'src', 'public', 'build');
 var mainDir = path.resolve(__dirname, 'src', 'app');
 var mainPath = path.resolve(mainDir, 'main.js');
+var __PROD__ = process.env.NODE_ENV === 'production'
+var __DEV__ = __PROD__ === false;
+
 var config = {
 
   // Makes sure errors in console map to the correct file
   // and line number
-  devtool: 'inline-source-map',
+  devtool: __DEV__ ? 'inline-source-map' : false,
   entry: [
 
     // For hot style updates
@@ -80,8 +83,8 @@ var config = {
     new Webpack.NoErrorsPlugin(),
     new Webpack.DefinePlugin({
       'process.env': {
-        'NODE_ENV': JSON.stringify('development'),
-        'DEVTOOLS': process.env.DEVTOOLS === 'true' ? true : false
+        'NODE_ENV': __PROD__ ? JSON.stringify('production') : JSON.stringify('development'),
+        __DEV__: __DEV__,
       },
     })],
   // enable html5 push state

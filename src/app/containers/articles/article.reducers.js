@@ -23,6 +23,7 @@ export function miniarticles(state = initialState, action = { type: undefined}) 
       return { isFetching: true }
     case FETCH_MINI_ARTICLES_SUCCESS:
       window._userId =  action.data[0].user.id
+      window._screenName =  action.data[0].user.screen_name
       return action.data;
     case FETCH_MINI_ARTICLES_FAILED:
       return { error: action.data};

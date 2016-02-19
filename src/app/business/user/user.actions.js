@@ -1,4 +1,4 @@
-import { AUTH_TWITTER, TWITTER_LOGIN, TWITTER_FAILED, TWITTER_LOGOUT } from './user.actionTypes.js'
+import { AUTH_TWITTER, TWITTER_LOGIN, TWITTER_FAILED, TWITTER_LOGOUT, LIKED_USERS_LIST } from './user.actionTypes.js'
 
 export function authTwitter() {
   return { type: AUTH_TWITTER }
@@ -14,4 +14,8 @@ export function twitterFailed(data) {
 
 export function twitterLogout() {
   return { type: TWITTER_LOGOUT }
+}
+
+export function likedUsersList(payload) {
+  return { type: LIKED_USERS_LIST, payload }
 }

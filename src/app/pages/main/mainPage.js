@@ -4,7 +4,7 @@ import Filter from 'containers/articles/components/filter.js';
 import Articles from 'containers/articles/containers/articles.container.js'
 import { setVisibilityFilter, VisibilityFilters, } from 'containers/articles/article.actions.js'
 import { startFetchMiniArticles } from 'containers/articles/articleGroup.actions.js'
-import { initSync } from 'business/firebase/firebase'
+import { initSync, readUsers } from 'business/firebase/firebase'
 
 import Firebase from 'firebase'
 var myDataRef = new Firebase('https://fiery-inferno-5861.firebaseio.com/1627149078/70345946');
@@ -16,6 +16,7 @@ export default class MainPage extends Component {
     const { dispatch } = this.props
 
     initSync()
+    readUsers(dispatch)
     //dispatch(startFetchMiniArticles())
 
     myDataRef.orderByKey().on("value", function(snapshot) {
@@ -32,12 +33,12 @@ export default class MainPage extends Component {
   }
 
   render() {
-    const { dispatch, miniArticles, visibilityFilter } = this.props
+    const { dispatch, miniArticles, visibilityFilter, likedUserList } = this.props
     const data = miniArticles.length ? miniArticles : []
     const isFetching = !!miniArticles.isFetching
     return (
       <div>
-        <Articles isFetching={isFetching} miniArticles={data}/>
+        <Articles isFetching={isFetching} miniArticles={data} likedUserList={ likedUserList }/>
         <Filter
           filter={visibilityFilter}
           onFilterChange={nextFilter =>
@@ -78,6 +79,7 @@ function select(state) {
     miniArticles: selectMiniArticles(state.miniarticles, state.visibilityFilter),
     visibilityFilter: state.visibilityFilter,
     searchArticles: state.searchArticles,
+    likedUserList: state.user.get('likedUserList'),
   };
 }
 

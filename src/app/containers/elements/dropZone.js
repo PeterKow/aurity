@@ -39,7 +39,7 @@ export default class DropZone extends Component {
     const { accepts, isOver, canDrop, connectDropTarget, lastDroppedItem, styles } = this.props;
     const isActive = isOver && canDrop;
 
-    console.log('isOver', isOver, canDrop)
+    //console.log('isOver', isOver, canDrop)
     let display = 'none'
     let opacity = 0.0;
     if (isOver) {
@@ -49,7 +49,7 @@ export default class DropZone extends Component {
       opacity = 0.6;
       display = ''
     }
-    console.log('sds', styles)
+    //console.log('sds', styles)
 
     return connectDropTarget(
       <div style={{ ...style, ...styles, opacity, display }}/>
