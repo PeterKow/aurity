@@ -37,6 +37,11 @@ export default class Articles extends Component {
       return loader()
     }
 
+    function getSource() {
+      return window._source === 'twitter' ? <span style={{ color: '#FFB347'}}>Twitter</span>
+        : <span style={{ color: '#77DD77'}}>Firebase</span>
+    }
+
     return (
       <div>
         <div>
@@ -44,7 +49,8 @@ export default class Articles extends Component {
           <button onClick={ () => dispatch(startFetchMiniArticles({ search: this.state.inputValue }))}>Search</button>
         </div>
         <div>
-          <span><b>{ window._userId}   </b></span>
+          { getSource() }
+          <span><b>  &nbsp;{ window._userId}  &nbsp; </b></span>
           <button onClick={() => readTweets(dispatch) }>Read</button>
           <button onClick={() => syncTweets(store.getState().miniarticles)}>Sync</button>
           <button style={{ marginLeft: '50%' }}onClick={() => syncTweets(store.getState().miniarticles) }>Add new!!</button>

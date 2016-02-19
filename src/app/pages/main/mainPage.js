@@ -8,6 +8,7 @@ import { initSync } from 'business/firebase/firebase'
 
 import Firebase from 'firebase'
 var myDataRef = new Firebase('https://fiery-inferno-5861.firebaseio.com/1627149078/70345946');
+window._source = 'firebase'
 
 export default class MainPage extends Component {
 

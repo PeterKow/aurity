@@ -29,6 +29,7 @@ export function setVisibilityFilter(filter) {
 }
 
 export function fetchMiniArticles() {
+  window._source = 'twitter'
   return { type: FETCH_MINI_ARTICLES}
 }
 

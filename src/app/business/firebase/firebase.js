@@ -12,7 +12,7 @@ function syncTweet(article) {
 }
 
 function syncTweets(tweets) {
-  console.log('rt', tweets, window._userId)
+  //console.log('rt', tweets, window._userId)
 
   const myDataRefUser = new Firebase('https://fiery-inferno-5861.firebaseio.com/1627149078/' + window._userId );
   tweets.forEach(tweet => {
@@ -22,6 +22,7 @@ function syncTweets(tweets) {
 }
 
 function readTweets(dispatch) {
+  window._source = 'firebase'
   const myDataRefUser = new Firebase('https://fiery-inferno-5861.firebaseio.com/1627149078/' + window._userId );
   myDataRefUser.orderByKey().on('value', function(snapshot) {
     const newData = []
@@ -42,7 +43,7 @@ function createFireArticle(tweet) {
   }
   const data = {}
   data[tweet.id_str] = tweet
-  console.log('sync ', data)
+  //console.log('sync ', data)
   return data
 }
 
