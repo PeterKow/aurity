@@ -1,3 +1,4 @@
+/* global __DEV__ */
 require('./main.css')
 require('font-awesome-webpack')
 
@@ -24,8 +25,7 @@ function getRootChildren(props) {
   const rootChildren = [
     <div key="intl">{renderRoutes.bind(null, props.history)()}</div>,
   ]
-  const __DEVTOOLS__ = process.env.DEVTOOLS;
-  if (__DEVTOOLS__) {
+  if (__DEV__) {
     rootChildren.push(
       <DevTools key="dev-tools"/>
     )

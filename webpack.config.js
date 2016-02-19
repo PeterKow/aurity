@@ -5,8 +5,9 @@ var buildPath = path.resolve(__dirname, 'src', 'public', 'build');
 var mainDir = path.resolve(__dirname, 'src', 'app');
 var mainPath = path.resolve(mainDir, 'main.js');
 var __PROD__ = process.env.NODE_ENV === 'production'
-var DEVTOOLS = process.env.DEVTOOLS === 'true'
 var __DEV__ = __PROD__ === false;
+console.log('__PROD__', __PROD__)
+console.log('__DEV__', __DEV__)
 
 var config = {
 
@@ -85,8 +86,9 @@ var config = {
     new Webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': __PROD__ ? JSON.stringify('production') : JSON.stringify('development'),
-        __DEV__: DEVTOOLS ? DEVTOOLS : __DEV__,
+        __DEV__: __DEV__,
       },
+      __DEV__: __DEV__,
     })],
   // enable html5 push state
   devServer: {

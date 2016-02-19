@@ -1,4 +1,4 @@
-/* global process */
+/* global process, __DEV__ */
 import { createStore, compose, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import logger from '../middleware/logger'
@@ -9,9 +9,7 @@ import DevTools from './devTools.js'
 let combinedCreateStore
 const storeEnhancers = []
 
-// todo: add it to webpack global config
-const __DEVTOOLS__ = process.env.DEVTOOLS;
-if (__DEVTOOLS__) {
+if (__DEV__) {
   storeEnhancers.push(DevTools.instrument())
   storeEnhancers.push(persistState(window.location.href.match(/[?&]debug_session=([^&]+)\b/)))
 }
