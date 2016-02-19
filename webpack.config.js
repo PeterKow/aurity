@@ -45,12 +45,7 @@ var config = {
       // ES6/7 syntax and JSX transpiling out of the box
       {
         test: /\.js$/,
-        loaders: ['react-hot', 'babel'],
-        exclude: [nodeModulesPath]
-      },
-      {
-        test: /\.jsx$/,
-        loaders: ['react-hot', 'babel'],
+        loaders: getLoaders(),
         exclude: [nodeModulesPath]
       },
       // Let us also add the style-loader and css-loader, which you can
@@ -97,3 +92,8 @@ var config = {
 };
 
 module.exports = config;
+
+function getLoaders(){
+  if (__DEV__)  return ['react-hot', 'babel']
+  else return ['babel']
+}

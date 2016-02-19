@@ -11,7 +11,7 @@
     "start": "NODE_ENV=development node ./server.js",
     "start_heroku": "NODE_ENV=production node ./server.js",
     "deploy_verbose": "NODE_ENV=production webpack -p --config webpack.production.config.js",
-    "deploy": "NODE_ENV=production webpack --p --config webpack.production.config.js --bail",
+    "deploy": "NODE_ENV=production webpack --p --config webpack.config.js --bail",
     "test": "mocha \"src/tests\" --compilers js:babel-core/register --recursive",
     "postinstall": "npm run deploy"
   },
