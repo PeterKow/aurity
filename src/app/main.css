@@ -3,3 +3,38 @@ body{
     padding-bottom: 10px;
 }
 
+
+
+@media screen and (min-width: 768px) {
+    .containerMain {
+        width: 750px;
+    }
+
+}
+
+@media screen and (min-width: 980px) {
+    .containerMain {
+        width: 960px;
+    }
+    body {
+        font-size: 22px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .containerMain {
+        width: 1170px;
+    }
+}
+
+@media screen and (min-width: 1600px) {
+    .containerMain {
+        width: 1480px;
+    }
+}
+.containerMain {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}

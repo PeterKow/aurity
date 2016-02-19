@@ -13,7 +13,7 @@ export default class Layout extends Component {
         <DropZone/>
         <DropZone styles={{ backgroundColor: 'green', transform: 'translate(80vh,-40vh)' }}/>
 
-        <div className="container">
+        <div className="containerMain">
           <Navbar/>
           {/* this will render the child routes */}
           {this.props.children}
