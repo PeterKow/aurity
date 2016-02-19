@@ -26,10 +26,6 @@ export default class Navbar extends Component {
             <li style={{cursor: 'pointer' }}
                 onClick={() => store.dispatch(startFetchMiniArticles())}><a>New search</a>
             </li>
-            <li style={{cursor: 'pointer' }}
-                onClick={() => syncTweets(store.getState().miniarticles) }>
-              Sync
-            </li>
             <li><Link to="/login">Login</Link></li>
             <li style={{cursor: 'pointer' }}
                 onClick={() => store.dispatch(logout())}><a>Logout</a>

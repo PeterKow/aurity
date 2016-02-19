@@ -7,7 +7,7 @@ import { startFetchMiniArticles } from 'containers/articles/articleGroup.actions
 import { initSync } from 'business/firebase/firebase'
 
 import Firebase from 'firebase'
-var myDataRef = new Firebase('https://fiery-inferno-5861.firebaseio.com/tweets');
+var myDataRef = new Firebase('https://fiery-inferno-5861.firebaseio.com/1627149078/70345946');
 
 export default class MainPage extends Component {
 
@@ -23,7 +23,7 @@ export default class MainPage extends Component {
       for( var tweet in data ) {
        newData.unshift(data[tweet])
       }
-      console.log('------------', newData);
+      //console.log('------------', newData);
       dispatch({ type: 'FETCH_MINI_ARTICLES_SUCCESS', data: newData })
     }, function (errorObject) {
       console.log("The read failed: " + errorObject.code);

@@ -6,34 +6,17 @@ import { connect } from 'react-redux';
 import { completeMiniArticle } from '../article.actions.js';
 import { startFetchMiniArticles } from '../articleGroup.actions';
 import MiniArticleList from '../components/miniArticleList.js';
-import Firebase from 'firebase'
-var myDataRef = new Firebase('https://fiery-inferno-5861.firebaseio.com/tweets');
-//import { Autocomplete } from 'react-toolbox/lib/button';
-import { getStates, matchStateToTerm, sortStates, styles } from './autocompleteUtils'
-import Autocomplete from 'react-autocomplete'
+//import { getStates, matchStateToTerm, sortStates, styles } from './autocompleteUtils'
+//import Autocomplete from 'react-autocomplete'
 
 import { syncTweets, readTweets } from 'business/firebase/firebase'
 import store from 'utils/store.js'
 import { getFollowers } from './followers'
 
-
-
 export default class Articles extends Component {
 
   state = {
     inputValue: '',
-  }
-
-  handleClick = (index) => {
-    const { miniArticles } = this.props;
-    const article = miniArticles.filter(article => article.id_str === index)[0]
-
-    if (!article.quotedStatus) {
-      delete article.quotedStatus
-    }
-    const data = {}
-    data[article.id_str] = article
-    myDataRef.update(data)
   }
 
   handleChange = (value) => {
