@@ -48,22 +48,22 @@ export default class Articles extends Component {
       <div>
         <div style={{ margin: '10px 0' }}>
           <input type="text" onChange={this.onInputChange.bind(this)}/>
-          <button onClick={ () => dispatch(startFetchMiniArticles({ search: this.state.inputValue }))}>Search</button>
+          <button style={ styleButton } onClick={ () => dispatch(startFetchMiniArticles({ search: this.state.inputValue }))}>Search</button>
         </div>
         <div style={{ margin: '10px 0' }}>
-          <button onClick={ () => dispatch(startFetchMiniArticles({ search: this.state.selectValue }))}>Search - { this.state.selectValue }</button>
-          <select id="likedUserList" onChange={this.onSelectChange.bind(this)}>
+          <button style={ styleButton } onClick={ () => dispatch(startFetchMiniArticles({ search: this.state.selectValue }))}>Search - { this.state.selectValue }</button>
+          <select style={ styleButton } id="likedUserList" onChange={this.onSelectChange.bind(this)}>
             { likedUserList.map(user => <option value={ user.screeName }>{ user.screeName }</option>)}
           </select>
         </div>
         <div>
           { getSource() }
           <span><b>  &nbsp;{ window._userId}  &nbsp;{ window._screenName}  &nbsp; </b></span>
-          <button onClick={() => readTweets(dispatch) }>Read</button>
-          <button onClick={() => syncTweets(store.getState().miniarticles)}>Sync</button>
+          <button style={ styleButton } onClick={() => readTweets(dispatch) }>Read</button>
+          <button style={{ ...styleButton, backgroundColor: '#FDFD96', color: 'black' }} onClick={() => syncTweets(store.getState().miniarticles)}>Sync</button>
           <div style={{ marginLeft: '50%' }}>
-            <button onClick={() => syncUsers() }>Save new user</button>
-            <button onClick={() => syncTweets(store.getState().miniarticles) }>Add new!!</button>
+            <button style={ styleButton } onClick={() => syncUsers() }>Save new user</button>
+            <button style={{ ...styleButton, backgroundColor: '#FF6961' }} onClick={() => syncTweets(store.getState().miniarticles) }>Add list new!!</button>
           </div>
         </div>
         <b>Total tweets: { miniArticles.length }</b>
@@ -98,6 +98,15 @@ function select() {
 // Wrap the component to inject dispatch and state into it
 export default connect(select)(Articles);
 
+const styleButton = {
+  borderRadius: 2,
+  padding: '3px 30px',
+  margin: '0 5px',
+  border: '0px solid',
+  borderColor: 'lightgreen',
+  backgroundColor: '#779ECB',
+  color: 'white',
+}
 
 //onMiniArticleClick={index =>dispatch(completeMiniArticle(index))} />
 //onMiniArticleClick={ this.handleClick } />
