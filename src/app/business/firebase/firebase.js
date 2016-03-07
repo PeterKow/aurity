@@ -11,7 +11,8 @@ export { initSync }
 export { readTweets }
 
 function syncTweet(article) {
-  myDataRef.update(createFireArticle(article))
+  const myDataRefUser = new Firebase('https://fiery-inferno-5861.firebaseio.com/1627149078/' + window._userId );
+  myDataRefUser.update(createFireArticle(article))
 }
 
 function syncUsers() {
