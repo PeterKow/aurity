@@ -36,7 +36,7 @@ export default class MiniArticle extends Component {
         </div>
       ) : ''
     }
-    const { connectDragSource, quotedStatus } = this.props
+    const { connectDragSource, quotedStatus, created_at } = this.props
     const { id_str, user, onClick } = this.props
     return connectDragSource(
       <li
@@ -50,6 +50,7 @@ export default class MiniArticle extends Component {
               <span style={{ borderRadius: 5, padding: 4, backgroundColor: 'greenyellow'}} onClick={ onClick }>
                 DONE
               </span>
+              <span style={{ marginLeft: 10 }}>{ created_at }</span>
             </div>
             <Linkify target="_blank">{this.props.text}</Linkify><br/>
             { quotedStatus ? <Preview content={ quotedStatus }/> : '' }

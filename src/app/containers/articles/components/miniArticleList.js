@@ -23,6 +23,7 @@ MiniArticleList.propTypes = {
   miniarticles: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     text: PropTypes.string.isRequired,
+    created_at: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
     favoriteCount: PropTypes.number.isRequired,
     retweetCount: PropTypes.number.isRequired,

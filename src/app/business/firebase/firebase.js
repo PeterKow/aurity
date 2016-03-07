@@ -39,7 +39,7 @@ function readUsers(dispatch) {
 function syncTweets(tweets) {
   const myDataRefUser = new Firebase('https://fiery-inferno-5861.firebaseio.com/1627149078/' + window._userId );
   tweets.forEach(tweet => {
-    //myDataRef.update(createFireArticle(tweet))
+    //console.log('createFireArticle(tweet)', createFireArticle(tweet))
     myDataRefUser.update(createFireArticle(tweet))
   })
 }
@@ -61,12 +61,16 @@ function readTweets(dispatch) {
 }
 
 function createFireArticle(tweet) {
-  if (!tweet.quotedStatus) {
-    delete tweet.quotedStatus
+
+  // sometime there is no ex. quoted data, and therefore is undefined, for now delete this, while we can't save this in firebase
+  // in future refine data  on entry -> when creating article from tweet
+  for (var key in tweet) {
+    if (tweet[key] === undefined) {
+      delete tweet[key]
+    }
   }
   const data = {}
   data[tweet.id_str] = tweet
-  //console.log('sync ', data)
   return data
 }
 
