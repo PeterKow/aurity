@@ -58,6 +58,7 @@ export default class MiniArticle extends Component {
             { getImage(this.props.image) }
           </div>
         </div>
+        <hr style={{ borderTop: '3px solid #CCC' }}/>
       </li>
     );
   }

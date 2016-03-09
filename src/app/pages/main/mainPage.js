@@ -38,12 +38,12 @@ export default class MainPage extends Component {
     const isFetching = !!miniArticles.isFetching
     return (
       <div>
-        <Articles isFetching={isFetching} miniArticles={data} likedUserList={ likedUserList }/>
         <Filter
           filter={visibilityFilter}
           onFilterChange={nextFilter =>
             dispatch(setVisibilityFilter(nextFilter))
           }/>
+        <Articles isFetching={isFetching} miniArticles={data} likedUserList={ likedUserList }/>
       </div>
     );
   }
