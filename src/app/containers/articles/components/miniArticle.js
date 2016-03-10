@@ -36,8 +36,9 @@ export default class MiniArticle extends Component {
         </div>
       ) : ''
     }
-    const { connectDragSource, quotedStatus, created_at } = this.props
-    const { id_str, user, onClick } = this.props
+    const { connectDragSource, quotedStatus, created_at, onThumbDown, onThumbUp, onStared } = this.props
+    const { id_str, user, onClick, thumbDown, thumbUp, stared } = this.props
+    console.log('stared', stared)
     return connectDragSource(
       <li
         style={styles(this.props.completed)}>
@@ -47,9 +48,13 @@ export default class MiniArticle extends Component {
             <div>
               { user.screenName }
               <a target="_blank" href={`https://twitter.com/${user.screenName}/status/${ id_str }`}>Twitter</a>
-              <span style={{ borderRadius: 5, padding: 4, backgroundColor: 'greenyellow'}} onClick={ onClick }>
+              <span style={{ borderRadius: 5, padding: 4, backgroundColor: 'greenyellow', margin: '0 10px'}}
+                    onClick={ onClick }>
                 DONE
               </span>
+              <span style={ getStyle(thumbDown) } onClick={ onThumbDown }>{ showThumbDown() }</span>
+              <span style={ getStyle(thumbUp) } onClick={ onThumbUp }>{ showThumbUp() }</span>
+              <span style={ getStyle(stared) } onClick={ onStared }>{ showStar() }</span>
               <span style={{ marginLeft: 10 }}>{ created_at }</span>
             </div>
             <Linkify target="_blank">{this.props.text}</Linkify><br/>
@@ -90,3 +95,19 @@ MiniArticle.propTypes = {
   connectDragSource: PropTypes.func,
 }
 
+function getStyle(mark) {
+  const style = { margin: '0 10px', backgroundColor: mark ? 'dodgerblue' : 'none' }
+  console.log('stared', mark, style)
+  return style
+}
+
+function showStar(stared) {
+  return stared ? '⭐' : ' ⭐';
+}
+
+function showThumbUp(thumbUp) {
+  return thumbUp ? '👍' : '👍'
+}
+function showThumbDown(thumbDown) {
+  return thumbDown ? '👎' : "👎";
+}

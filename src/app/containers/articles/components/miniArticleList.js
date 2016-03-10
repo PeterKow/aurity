@@ -3,6 +3,8 @@
  */
 import React, { Component, PropTypes } from 'react'
 import MiniArticle from './miniArticle.js'
+import store from 'utils/store'
+import { syncTweet } from 'business/firebase/firebase'
 
 export default class MiniArticleList extends Component {
   render() {
@@ -11,7 +13,11 @@ export default class MiniArticleList extends Component {
           {this.props.miniarticles.map((miniArticle, index) =>
               <MiniArticle {...miniArticle}
                 key={index}
-                onClick={() => this.props.onMiniArticleClick(miniArticle.id_str)} />
+                onClick={() => this.props.onMiniArticleClick(miniArticle.id_str)}
+                onThumbDown={() => syncTweet(setThumbDown(miniArticle))}
+                onThumbUp={() => syncTweet(setThumbUp(miniArticle))}
+                onStared={() => syncTweet(setStar(miniArticle))}
+              />
           )}
       </ul>
     );
@@ -29,4 +35,21 @@ MiniArticleList.propTypes = {
     retweetCount: PropTypes.number.isRequired,
     quotedStatus: PropTypes.object,
   }).isRequired).isRequired,
+}
+
+function setThumbUp(article) {
+  article.thumbDown = false
+  article.thumbUp = true
+  return article
+}
+
+function setThumbDown(article) {
+  article.thumbDown = true
+  article.thumbUp = false
+  return article
+}
+
+function setStar(article) {
+  article.stared = !article.stared
+  return article
 }

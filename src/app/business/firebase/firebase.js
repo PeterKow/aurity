@@ -2,6 +2,7 @@ import Firebase from 'firebase'
 var myDataRef = new Firebase('https://fiery-inferno-5861.firebaseio.com/tweets');
 import store from 'utils/store'
 import { likedUsersList } from 'business/user/user.actions'
+import { updateArticleSuccess } from 'containers/articles/article.actions'
 
 export { readUsers }
 export { syncUsers }
@@ -10,9 +11,21 @@ export { syncTweet }
 export { initSync }
 export { readTweets }
 
+
+
 function syncTweet(article) {
   const myDataRefUser = new Firebase('https://fiery-inferno-5861.firebaseio.com/1627149078/' + window._userId );
-  myDataRefUser.update(createFireArticle(article))
+  console.log('sync', article)
+  myDataRefUser.update(createFireArticle(article), onComplete)
+
+  function onComplete(error) {
+    if (error) {
+      console.log('Synchronization failed');
+    } else {
+      console.log('Synchronization succeeded');
+      store.dispatch(updateArticleSuccess(article))
+    }
+  };
 }
 
 function syncUsers() {

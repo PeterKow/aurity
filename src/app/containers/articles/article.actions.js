@@ -6,6 +6,7 @@ export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER';
 export const FETCH_MINI_ARTICLES = 'FETCH_MINI_ARTICLES';
 export const FETCH_MINI_ARTICLES_FAILED = 'FETCH_MINI_ARTICLES_FAILED';
 export const FETCH_MINI_ARTICLES_SUCCESS = 'FETCH_MINI_ARTICLES_SUCCESS';
+export const UPDATE_ARTICLE_SUCCESS = 'UPDATE_ARTICLE_SUCCESS';
 
 /*
  * other constants
@@ -39,4 +40,8 @@ export function fetchMiniArticlesSuccess(data) {
 
 export function fetchMiniArticlesFailed(data) {
   return { type: FETCH_MINI_ARTICLES_FAILED, data}
+}
+
+export function updateArticleSuccess(payload) {
+  return { type: UPDATE_ARTICLE_SUCCESS, payload}
 }

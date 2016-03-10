@@ -1,5 +1,5 @@
 import { COMPLETE_MINI_ARTICLE, SET_VISIBILITY_FILTER, VisibilityFilters,
-         FETCH_MINI_ARTICLES, FETCH_MINI_ARTICLES_FAILED, FETCH_MINI_ARTICLES_SUCCESS } from './article.actions.js'
+         FETCH_MINI_ARTICLES, FETCH_MINI_ARTICLES_FAILED, FETCH_MINI_ARTICLES_SUCCESS, UPDATE_ARTICLE_SUCCESS } from './article.actions.js'
 import { twitterResultsSimple } from './mockTwitterResults.js'
 import { syncTweet } from 'business/firebase/firebase'
 const { SHOW_ALL } = VisibilityFilters
@@ -35,6 +35,10 @@ export function miniarticles(state = initialState, action = { type: undefined}) 
       )
       syncWithFirebase(newState, action.id)
       return newState
+    case UPDATE_ARTICLE_SUCCESS:
+      return state.map(miniArticle =>
+        miniArticle.id_str === action.payload.id_str ? action.payload : miniArticle
+      )
     default:
       return state;
   }
