@@ -4,7 +4,7 @@
 import React, { Component, PropTypes } from 'react'
 import MiniArticle from './miniArticle.js'
 import store from 'utils/store'
-import { syncTweet } from 'business/firebase/firebase'
+import { syncTweet, saveTags } from 'business/firebase/firebase'
 
 export default class MiniArticleList extends Component {
   render() {
@@ -17,6 +17,7 @@ export default class MiniArticleList extends Component {
                 onThumbDown={() => syncTweet(setThumbDown(miniArticle))}
                 onThumbUp={() => syncTweet(setThumbUp(miniArticle))}
                 onStared={() => syncTweet(setStar(miniArticle))}
+                saveTags={(tags) => syncTweet(setTags(tags, miniArticle))}
               />
           )}
       </ul>
@@ -51,5 +52,10 @@ function setThumbDown(article) {
 
 function setStar(article) {
   article.stared = !article.stared
+  return article
+}
+
+function setTags(tags, article) {
+  article.tags = tags
   return article
 }

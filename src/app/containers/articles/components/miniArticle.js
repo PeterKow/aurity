@@ -28,6 +28,32 @@ const boxSource = {
   isDragging: monitor.isDragging(),
 }))
 export default class MiniArticle extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      tags: '',
+    }
+  }
+
+  componentWillMount() {
+    const { tags } = this.props
+    this.setState({
+      tags: tags,
+    })
+  }
+
+  componentWillReceiveProps() {
+    const { tags } = this.props
+    this.setState({
+      tags: tags,
+    })
+  }
+
+  onTagChange = (e) => {
+    this.setState({ tags: e.target.value})
+  }
+
   render() {
     function getImage(image) {
       return image ? (
@@ -37,15 +63,15 @@ export default class MiniArticle extends Component {
       ) : ''
     }
     const { connectDragSource, quotedStatus, created_at, onThumbDown, onThumbUp, onStared } = this.props
-    const { id_str, user, onClick, thumbDown, thumbUp, stared } = this.props
-    console.log('stared', stared)
+    const { id_str, user, onClick, thumbDown, thumbUp, stared, saveTags } = this.props
+
     return connectDragSource(
       <li
         style={styles(this.props.completed)}>
         <div style={{padding: '9px 12px'}}>
           <div style={{ marginLeft: 58 }}>
             <img style={imgStyle} src={this.props.profileImage}></img>
-            <div>
+            <div id="manage">
               { user.screenName }
               <a target="_blank" href={`https://twitter.com/${user.screenName}/status/${ id_str }`}>Twitter</a>
               <span style={{ borderRadius: 5, padding: 4, backgroundColor: 'greenyellow', margin: '0 10px'}}
@@ -56,6 +82,10 @@ export default class MiniArticle extends Component {
               <span style={ getStyle(thumbUp) } onClick={ onThumbUp }>{ showThumbUp() }</span>
               <span style={ getStyle(stared) } onClick={ onStared }>{ showStar() }</span>
               <span style={{ marginLeft: 10 }}>{ created_at }</span>
+            </div>
+            <div id="tags" style={{ marginTop: 5 }}>
+              <input onChange={ this.onTagChange } value={ this.state.tags }/>
+              <button onClick={ () => saveTags(this.state.tags) }>Save tags</button>
             </div>
             <Linkify target="_blank">{this.props.text}</Linkify><br/>
             { quotedStatus ? <Preview content={ quotedStatus }/> : '' }
@@ -88,6 +118,7 @@ MiniArticle.propTypes = {
   text: PropTypes.string.isRequired,
   completed: PropTypes.bool.isRequired,
   profileImage: PropTypes.string,
+  tags: PropTypes.string,
   image: PropTypes.string,
   favoriteCount: PropTypes.number.isRequired,
   retweetCount: PropTypes.number.isRequired,
@@ -97,7 +128,6 @@ MiniArticle.propTypes = {
 
 function getStyle(mark) {
   const style = { margin: '0 10px', backgroundColor: mark ? 'dodgerblue' : 'none' }
-  console.log('stared', mark, style)
   return style
 }
 
