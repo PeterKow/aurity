@@ -22,8 +22,12 @@ export function miniarticles(state = initialState, action = { type: undefined}) 
       // TODO: change this to immutable, it should be an array but we need also object
       return { isFetching: true }
     case FETCH_MINI_ARTICLES_SUCCESS:
-      window._userId =  action.data[0].user.id
-      window._screenName =  action.data[0].user.screen_name
+      if(action.data[0]) {
+        window._userId = action.data[0].user.id
+        window._screenName = action.data[0].user.screen_name
+      } else {
+        console.log('NO DATA for search')
+      }
       return action.data;
     case FETCH_MINI_ARTICLES_FAILED:
       return { error: action.data};

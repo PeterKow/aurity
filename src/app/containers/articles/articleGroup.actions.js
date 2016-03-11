@@ -9,8 +9,8 @@ export function startFetchMiniArticles(payload = {}) {
     dispatch(fetchMiniArticles(payload))
     //const from:dan_abramov
     const user = payload.search ? payload.search : 'dan_abramov'
-    const minRetweets = 10
-    const minFaves = 10
+    const minRetweets = payload.min_retweets
+    const minFaves =  payload.min_faves
     const query = "from:" + user + " min_retweets:" + minRetweets + " OR min_faves:" + minFaves
     console.log('query', query)
     return sendRequest(dispatch, query)

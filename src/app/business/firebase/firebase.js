@@ -26,10 +26,10 @@ function syncTweet(article) {
   }
 }
 
-function syncUsers() {
+function syncUsers({ min_faves, min_retweets }) {
   const myDataRefUserLike = new Firebase('https://fiery-inferno-5861.firebaseio.com/1627149078/likedUsers/' + window._userId );
-  console.log('save user', { userId: window._userId, screeName: window._screenName})
-  myDataRefUserLike.update({ userId: window._userId, screeName: window._screenName})
+  console.log('save user', { userId: window._userId, screeName: window._screenName, min_faves, min_retweets })
+  myDataRefUserLike.update({ userId: window._userId, screeName: window._screenName, min_faves, min_retweets})
 }
 
 function readUsers(dispatch) {
