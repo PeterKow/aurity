@@ -15,4 +15,5 @@ var job = new CronJob('*/3 * * * *', function() {
   true /* Start the job right now */
 )
 
-job.start();
+setTimeout(checkGet(), 2000)
+//job.start();

@@ -1,6 +1,7 @@
 var qs = require('querystring');
 var request = require('request');
 var auth = require('../utils/auth.js')
+var syncTweets = require('../api/tweet.api.js').syncTweets
 
 exports.twitterApi = function(app){
 
@@ -191,7 +192,9 @@ function checkGet (req, res) {
         message: result
       });
     } else {
-      console.log('GOT, ',result.statuses)
+      console.log('GOT, ')
+      //console.log('GOT, ',result.statuses)
+      syncTweets(result.statuses)
     }
 
     // [MOVED] db.save moved into second callback function
