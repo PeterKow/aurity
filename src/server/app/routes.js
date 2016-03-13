@@ -2,7 +2,7 @@
  * Created by Peter on 29/08/15.
  */
 var path = require('path');
-var twitterSearch = require('./twitterSearch')
+var twitterSearch = require('./twitterSearch').twitterApi
 
 module.exports = function(app, passport) {
 

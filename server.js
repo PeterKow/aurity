@@ -40,3 +40,5 @@ app.get('/*', function(req, res, next){
 app.listen(port, function() {
   console.log('Server started at port ', port);
 });
+
+require('./src/server/utils/crone')
