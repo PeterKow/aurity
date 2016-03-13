@@ -5,6 +5,7 @@ import Articles from 'containers/articles/containers/articles.container.js'
 import { setVisibilityFilter, VisibilityFilters, } from 'containers/articles/article.actions.js'
 import { startFetchMiniArticles } from 'containers/articles/articleGroup.actions.js'
 import { initSync, readUsers } from 'business/firebase/firebase'
+import { check } from 'business/tweeter/tweeterApi'
 
 import Firebase from 'firebase'
 var myDataRef = new Firebase('https://fiery-inferno-5861.firebaseio.com/1627149078/70345946');
@@ -38,6 +39,7 @@ export default class MainPage extends Component {
     const isFetching = !!miniArticles.isFetching
     return (
       <div>
+        <button onClick={ check }>Check cron</button>
         <Filter
           filter={visibilityFilter}
           onFilterChange={nextFilter =>

@@ -36,15 +36,15 @@ export default class MiniArticle extends Component {
     }
   }
 
-  componentWillMount() {
+  componentWillMount(nextProps) {
     const { tags } = this.props
     this.setState({
       tags: tags,
     })
   }
 
-  componentWillReceiveProps() {
-    const { tags } = this.props
+  componentWillReceiveProps(nextProps) {
+    const { tags } = nextProps
     this.setState({
       tags: tags,
     })
