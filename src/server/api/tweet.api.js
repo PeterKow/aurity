@@ -23,7 +23,7 @@ function saveTweet(tweet){
           console.log('Error saving Tweet', err)
           throw err;
         }
-        console.log('success SAVE', err)
+        //console.log('success SAVE', err)
       })
 
 }

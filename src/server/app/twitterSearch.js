@@ -6,6 +6,7 @@ var syncTweets = require('../api/tweet.api.js').syncTweets
 exports.checkGet = checkGet
 exports.getFollowers = getFollowers
 exports.getFriends = getFriends
+exports.getLookupUsers = getLookupUsers
 
 exports.twitterApi = function(app){
 
@@ -253,7 +254,7 @@ function getFriends(req, res, cb) {
   // dan id: 70345946
   var params = {
     user_id: req.body.query.user_id || 1627149078,
-    count: req.body.query.count || 1500
+    count: req.body.query.count || 100
   };
 
   console.log('query --> ', params)
@@ -296,6 +297,44 @@ function getFriends(req, res, cb) {
 
 }
 
+function getLookupUsers(req, res, cb) {
+
+  console.log('Request -->', req.body);
+
+  // dan id: 70345946
+  var params = {
+    user_id: req.body.query.user_id
+  };
+
+
+  var url = createUrl('https://api.twitter.com/1.1/users/lookup.json?', params)
+  var oauth = getAuth(req);
+
+  request.get({
+    url: url,
+    oauth: oauth,
+    json: true
+  }, function(e, r, result) {
+
+    //console.log('result', result)
+    if(result.errors){
+      console.log("result error", result.errors[0].code);
+      if (result.errors[0].code === 32) {
+        errorHandling(res)
+      }
+    }
+
+    if(res) {
+      return res.status(200).send({
+        message: result
+      })
+    } else {
+     return cb(result)
+    }
+  });
+
+}
+
 function errorHandling(res){
   if(res) {
     return res.status(401).send({
@@ -305,4 +344,20 @@ function errorHandling(res){
     // CRONE
     console.log('CRONE failed ', res)
   };
+}
+
+
+function getAuth(req){
+  return {
+    consumer_key: process.env.TWITTER_KEY,
+    consumer_secret:  process.env.TWITTER_SECRET,
+    token: req.body.token || '1627149078-W11Zxz9Kffwf7sskctuhChgNKPxMzzavXarkM4k',
+    token_secret: 'dfuTWCuExC145nbQQYNCmKPNlapxG6LFh7FKQPsoS0nwD',
+}}
+
+function createUrl(urlHead, params){
+  console.log('query --> ', params)
+  var  url = urlHead + qs.stringify(params);
+  console.log('url', url);
+  return url
 }
