@@ -40,12 +40,7 @@ exports.twitterApi = function(app){
 
     console.log('url', url);
 
-    var oauth = {
-      consumer_key: process.env.TWITTER_KEY,
-      consumer_secret:  process.env.TWITTER_SECRET,
-      token: req.body.token,
-      token_secret: req.body.secret,
-    };
+    var oauth = getAuth(req);
 
     console.log('auth --> ', oauth)
 
@@ -82,14 +77,8 @@ exports.twitterApi = function(app){
 
 
 function checkGet (req, res) {
-  var oauth = {
-    consumer_key: process.env.TWITTER_KEY,
-    consumer_secret:  process.env.TWITTER_SECRET,
-    token: '1627149078-W11Zxz9Kffwf7sskctuhChgNKPxMzzavXarkM4k',
-    token_secret: 'dfuTWCuExC145nbQQYNCmKPNlapxG6LFh7FKQPsoS0nwD',
-  };
 
-
+  var oauth = getAuth(req);
   var url = 'https://api.twitter.com/1.1/search/tweets.json?';
 
   var params = {
@@ -139,14 +128,8 @@ function checkGet (req, res) {
   });
 }
 function checkGet (req, res) {
-  var oauth = {
-    consumer_key: process.env.TWITTER_KEY,
-    consumer_secret:  process.env.TWITTER_SECRET,
-    token: '1627149078-W11Zxz9Kffwf7sskctuhChgNKPxMzzavXarkM4k',
-    token_secret: 'dfuTWCuExC145nbQQYNCmKPNlapxG6LFh7FKQPsoS0nwD',
-  };
 
-
+  var oauth = getAuth(req);
   var url = 'https://api.twitter.com/1.1/search/tweets.json?';
 
   var params = {
@@ -213,14 +196,7 @@ function getFollowers(req, res, cb) {
 
   console.log('url', url);
 
-  var oauth = {
-    consumer_key: process.env.TWITTER_KEY,
-    consumer_secret:  process.env.TWITTER_SECRET,
-    token: req.body.token || '1627149078-W11Zxz9Kffwf7sskctuhChgNKPxMzzavXarkM4k',
-    token_secret: 'dfuTWCuExC145nbQQYNCmKPNlapxG6LFh7FKQPsoS0nwD',
-  };
-
-  //console.log('auth --> ', oauth)
+  var oauth = getAuth(req);
 
   request.get({
     url: url,
@@ -263,12 +239,7 @@ function getFriends(req, res, cb) {
 
   console.log('url', url);
 
-  var oauth = {
-    consumer_key: process.env.TWITTER_KEY,
-    consumer_secret:  process.env.TWITTER_SECRET,
-    token: req.body.token || '1627149078-W11Zxz9Kffwf7sskctuhChgNKPxMzzavXarkM4k',
-    token_secret: 'dfuTWCuExC145nbQQYNCmKPNlapxG6LFh7FKQPsoS0nwD',
-  };
+  var oauth = getAuth(req);
 
   //console.log('auth --> ', oauth)
 
@@ -348,12 +319,15 @@ function errorHandling(res, result){
 
 
 function getAuth(req){
-  return {
+  const auth = {
     consumer_key: process.env.TWITTER_KEY,
     consumer_secret:  process.env.TWITTER_SECRET,
     token: req.body.token || process.env.TW_ACCESS_TOKEN,
     token_secret: req.body.secret || process.env.TW_ACCESS_TOKEN_SECRET,
-}}
+  }
+  console.log('auth', auth)
+  return auth
+}
 
 function createUrl(urlHead, params){
   console.log('query --> ', params)
