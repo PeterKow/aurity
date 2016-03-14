@@ -2,7 +2,7 @@ var CronJob = require('cron').CronJob;
 var checkGet = require('../app/twitterSearch.js').checkGet
 var getFriends = require('../app/twitterSearch.js').getFriends
 var getLookupUsers = require('../app/twitterSearch.js').getLookupUsers
-var userFirends = require('../app/users.mock.js').userFirends
+var userFirends = require('../mock/users.mock.js').userFirends
 var job = new CronJob('*/3 * * * *', function() {
     /*
      * Runs every weekday (Monday through Friday)

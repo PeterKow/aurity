@@ -122,7 +122,7 @@ function checkGet (req, res) {
     if(result.errors){
       console.log("result error", result.errors[0].code);
       if (result.errors[0].code === 32) {
-        errorHandling(res)
+        errorHandling(res, result)
       }
     }
     // console.log(result);
@@ -179,7 +179,7 @@ function checkGet (req, res) {
     if(result.errors){
       console.log("result error", result.errors[0].code);
       if (result.errors[0].code === 32) {
-        errorHandling(res)
+        errorHandling(res, result)
       }
     }
     // console.log(result);
@@ -232,7 +232,7 @@ function getFollowers(req, res, cb) {
     if(result.errors){
       console.log("result error", result.errors[0].code);
       if (result.errors[0].code === 32) {
-        errorHandling(res)
+        errorHandling(res, result)
       }
     }
 
@@ -282,7 +282,7 @@ function getFriends(req, res, cb) {
     if(result.errors){
       console.log("result error", result.errors[0].code);
       if (result.errors[0].code === 32) {
-        errorHandling(res)
+        errorHandling(res, result)
       }
     }
 
@@ -320,7 +320,7 @@ function getLookupUsers(req, res, cb) {
     if(result.errors){
       console.log("result error", result.errors[0].code);
       if (result.errors[0].code === 32) {
-        errorHandling(res)
+        errorHandling(res, result)
       }
     }
 
@@ -335,14 +335,14 @@ function getLookupUsers(req, res, cb) {
 
 }
 
-function errorHandling(res){
+function errorHandling(res, result){
   if(res) {
     return res.status(401).send({
       message: result.errors[0].message
     })
   } else {
     // CRONE
-    console.log('CRONE failed ', res)
+    console.log('CRONE failed ', result)
   };
 }
 
@@ -351,8 +351,8 @@ function getAuth(req){
   return {
     consumer_key: process.env.TWITTER_KEY,
     consumer_secret:  process.env.TWITTER_SECRET,
-    token: req.body.token || '1627149078-W11Zxz9Kffwf7sskctuhChgNKPxMzzavXarkM4k',
-    token_secret: 'dfuTWCuExC145nbQQYNCmKPNlapxG6LFh7FKQPsoS0nwD',
+    token: req.body.token || process.env.TW_ACCESS_TOKEN,
+    token_secret: req.body.secret || process.env.TW_ACCESS_TOKEN_SECRET,
 }}
 
 function createUrl(urlHead, params){
