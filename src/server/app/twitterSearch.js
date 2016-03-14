@@ -325,7 +325,7 @@ function getAuth(req){
     token: req.body.token || process.env.TW_ACCESS_TOKEN,
     token_secret: req.body.secret || process.env.TW_ACCESS_TOKEN_SECRET,
   }
-  console.log('auth', auth)
+  //console.log('auth', auth)
   return auth
 }
 

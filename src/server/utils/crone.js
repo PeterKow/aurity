@@ -5,7 +5,7 @@ var getLookupUsers = require('../app/twitterSearch.js').getLookupUsers
 var userFirends = require('../mock/users.mock.js').userFirends
 
 //var croneTime = '*/3 * * * *'
-var croneTime = '42 21 * * *'
+var croneTime = '12 22 * * *'
 console.log('CRON SET FOR: ', croneTime)
 var job = new CronJob(croneTime, function() {
     /*
