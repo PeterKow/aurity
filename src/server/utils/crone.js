@@ -3,14 +3,18 @@ var checkGet = require('../app/twitterSearch.js').checkGet
 var getFriends = require('../app/twitterSearch.js').getFriends
 var getLookupUsers = require('../app/twitterSearch.js').getLookupUsers
 var userFirends = require('../mock/users.mock.js').userFirends
-var job = new CronJob('*/3 * * * *', function() {
+
+//var croneTime = '*/3 * * * *'
+var croneTime = '35 21 * * *'
+
+var job = new CronJob(croneTime, function() {
     /*
      * Runs every weekday (Monday through Friday)
      * at 11:30:00 AM. It does not run on Saturday
      * or Sunday.
      */
   console.log('start CRONE', new Date)
-  //checkGet()
+  syncTweetsAll()
   }, function () {
   console.log('stop CRONE')
     /* This function is executed when the job stops */
@@ -28,8 +32,8 @@ var minFaves = 0
 var cronQuery = { body: { query:  "from:" + user + " min_retweets:" + minRetweets + " OR min_faves:" + minFaves }}
 //setTimeout( getFriends({ body: { query: "CRONE TASK friends" }}, null, syncFriendsTweets), 2000)
 //setTimeout(checkGet(cronQuery), 2000)
-setTimeout(syncTweetsAll(), 2000)
-//job.start();
+//setTimeout(syncTweetsAll(), 2000)
+job.start();
 
 
 //next_cursor: 1528715716440134400,
