@@ -14,13 +14,13 @@ var userFriendID = require('../mock/userId.mock.js').userFriendID
 
 
 //var croneTime = '*/3 * * * *'
-createSyncTask('00 23 * * *', userFirends100)
-createSyncTask('15 23 * * *', userFirends200)
-createSyncTask('30 23 * * *', userFirends300)
-createSyncTask('45 23 * * *', userFirends400)
-createSyncTask('01 00 * * *', userFirends500)
-createSyncTask('15 00 * * *', userFirends600)
-createSyncTask('30 00 * * *', userFirends700)
+//createSyncTask('00 23 * * *', userFirends100)
+//createSyncTask('15 23 * * *', userFirends200)
+createSyncTask('15 10 * * *', userFirends300)
+createSyncTask('30 10 * * *', userFirends400)
+createSyncTask('45 10 * * *', userFirends500)
+createSyncTask('00 11 * * *', userFirends600)
+createSyncTask('15 11 * * *', userFirends700)
 
 function createSyncTask(croneTime, userFriends) {
 
