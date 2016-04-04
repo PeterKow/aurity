@@ -22,7 +22,7 @@ export function miniarticles(state = initialState, action = { type: undefined}) 
       // TODO: change this to immutable, it should be an array but we need also object
       return { isFetching: true }
     case FETCH_MINI_ARTICLES_SUCCESS:
-      if(action.data[0]) {
+      if(action.data[0] && action.data[0].user) {
         window._userId = action.data[0].user.id
         window._screenName = action.data[0].user.screen_name
       } else {
